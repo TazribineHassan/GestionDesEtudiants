@@ -1,0 +1,17 @@
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe.config
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.pdb
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Properties.Resources.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.exe
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.pdb
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CopyComplete
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.branch.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.MainForm.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Student.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Graphic.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Reporting.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ReportingOneStudnet.resources
