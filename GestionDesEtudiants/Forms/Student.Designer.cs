@@ -185,6 +185,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton4.Text = "Supprimer";
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = false;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
             // iconButton3
             // 
@@ -223,6 +224,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton2.Text = "Ajouter";
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // groupBox1
             // 

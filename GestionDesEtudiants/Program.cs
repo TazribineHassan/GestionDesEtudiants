@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace GestionDesEtudiants
 {
     static class Program
@@ -19,4 +20,5 @@ namespace GestionDesEtudiants
             Application.Run(new MainForm());
         }
     }
+
 }
