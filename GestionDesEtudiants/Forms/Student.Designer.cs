@@ -30,6 +30,7 @@ namespace GestionDesEtudiants.Forms
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cne = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +42,9 @@ namespace GestionDesEtudiants.Forms
             this.filiere = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iconButton5 = new FontAwesome.Sharp.IconButton();
             this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.iconButton8 = new FontAwesome.Sharp.IconButton();
+            this.iconButton7 = new FontAwesome.Sharp.IconButton();
+            this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -72,9 +76,13 @@ namespace GestionDesEtudiants.Forms
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(251)))));
+            this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.iconButton5);
             this.panel1.Controls.Add(this.iconButton4);
+            this.panel1.Controls.Add(this.iconButton8);
+            this.panel1.Controls.Add(this.iconButton7);
+            this.panel1.Controls.Add(this.iconButton6);
             this.panel1.Controls.Add(this.iconButton3);
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -85,6 +93,27 @@ namespace GestionDesEtudiants.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(984, 476);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(347, 16);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.iconButton1.Size = new System.Drawing.Size(40, 40);
+            this.iconButton1.TabIndex = 7;
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // dataGridView1
             // 
@@ -99,9 +128,9 @@ namespace GestionDesEtudiants.Forms
             this.adresse,
             this.tele,
             this.filiere});
-            this.dataGridView1.Location = new System.Drawing.Point(429, 61);
+            this.dataGridView1.Location = new System.Drawing.Point(416, 110);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(543, 328);
+            this.dataGridView1.Size = new System.Drawing.Size(556, 279);
             this.dataGridView1.TabIndex = 6;
             // 
             // cne
@@ -159,7 +188,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton5.IconColor = System.Drawing.Color.White;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.IconSize = 35;
-            this.iconButton5.Location = new System.Drawing.Point(791, 408);
+            this.iconButton5.Location = new System.Drawing.Point(856, 408);
             this.iconButton5.Name = "iconButton5";
             this.iconButton5.Size = new System.Drawing.Size(116, 49);
             this.iconButton5.TabIndex = 5;
@@ -178,7 +207,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton4.IconColor = System.Drawing.Color.White;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.IconSize = 35;
-            this.iconButton4.Location = new System.Drawing.Point(566, 408);
+            this.iconButton4.Location = new System.Drawing.Point(634, 408);
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Size = new System.Drawing.Size(116, 49);
             this.iconButton4.TabIndex = 5;
@@ -186,6 +215,67 @@ namespace GestionDesEtudiants.Forms
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = false;
             this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
+            // 
+            // iconButton8
+            // 
+            this.iconButton8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconButton8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconButton8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton8.ForeColor = System.Drawing.Color.White;
+            this.iconButton8.IconChar = FontAwesome.Sharp.IconChar.SortAlphaDown;
+            this.iconButton8.IconColor = System.Drawing.Color.White;
+            this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton8.IconSize = 30;
+            this.iconButton8.Location = new System.Drawing.Point(830, 55);
+            this.iconButton8.Name = "iconButton8";
+            this.iconButton8.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.iconButton8.Size = new System.Drawing.Size(142, 49);
+            this.iconButton8.TabIndex = 5;
+            this.iconButton8.Text = "Tri décroissant";
+            this.iconButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton8.UseVisualStyleBackColor = false;
+            this.iconButton8.Click += new System.EventHandler(this.iconButton8_Click);
+            // 
+            // iconButton7
+            // 
+            this.iconButton7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconButton7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton7.ForeColor = System.Drawing.Color.White;
+            this.iconButton7.IconChar = FontAwesome.Sharp.IconChar.SortAlphaUp;
+            this.iconButton7.IconColor = System.Drawing.Color.White;
+            this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton7.IconSize = 30;
+            this.iconButton7.Location = new System.Drawing.Point(643, 55);
+            this.iconButton7.Name = "iconButton7";
+            this.iconButton7.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.iconButton7.Size = new System.Drawing.Size(132, 49);
+            this.iconButton7.TabIndex = 5;
+            this.iconButton7.Text = "Tri croissant";
+            this.iconButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton7.UseVisualStyleBackColor = false;
+            // 
+            // iconButton6
+            // 
+            this.iconButton6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconButton6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton6.ForeColor = System.Drawing.Color.White;
+            this.iconButton6.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.iconButton6.IconColor = System.Drawing.Color.White;
+            this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton6.IconSize = 30;
+            this.iconButton6.Location = new System.Drawing.Point(416, 55);
+            this.iconButton6.Name = "iconButton6";
+            this.iconButton6.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.iconButton6.Size = new System.Drawing.Size(173, 49);
+            this.iconButton6.TabIndex = 5;
+            this.iconButton6.Text = "Charger les données";
+            this.iconButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton6.UseVisualStyleBackColor = false;
             // 
             // iconButton3
             // 
@@ -198,7 +288,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton3.IconColor = System.Drawing.Color.White;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.IconSize = 35;
-            this.iconButton3.Location = new System.Drawing.Point(316, 408);
+            this.iconButton3.Location = new System.Drawing.Point(416, 408);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(116, 49);
             this.iconButton3.TabIndex = 5;
@@ -217,7 +307,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton2.IconColor = System.Drawing.Color.White;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 35;
-            this.iconButton2.Location = new System.Drawing.Point(78, 408);
+            this.iconButton2.Location = new System.Drawing.Point(162, 408);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(116, 49);
             this.iconButton2.TabIndex = 5;
@@ -248,9 +338,9 @@ namespace GestionDesEtudiants.Forms
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
-            this.groupBox1.Location = new System.Drawing.Point(48, 61);
+            this.groupBox1.Location = new System.Drawing.Point(27, 61);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(346, 341);
+            this.groupBox1.Size = new System.Drawing.Size(360, 341);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Etudiant";
@@ -258,19 +348,20 @@ namespace GestionDesEtudiants.Forms
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(152, 183);
+            this.dateTimePicker1.Location = new System.Drawing.Point(153, 185);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(165, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(168, 23);
             this.dateTimePicker1.TabIndex = 5;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(151, 25);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(153, 25);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(170, 26);
+            this.textBox2.Size = new System.Drawing.Size(168, 23);
             this.textBox2.TabIndex = 4;
             // 
             // radioButton2
@@ -301,37 +392,42 @@ namespace GestionDesEtudiants.Forms
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(150, 302);
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(153, 302);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(170, 26);
+            this.textBox9.Size = new System.Drawing.Size(168, 23);
             this.textBox9.TabIndex = 1;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(150, 265);
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(153, 265);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(170, 26);
+            this.textBox8.Size = new System.Drawing.Size(168, 23);
             this.textBox8.TabIndex = 1;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(150, 224);
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(153, 224);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(170, 26);
+            this.textBox7.Size = new System.Drawing.Size(168, 23);
             this.textBox7.TabIndex = 1;
             // 
             // textBox4
             // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(153, 106);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(168, 26);
+            this.textBox4.Size = new System.Drawing.Size(168, 23);
             this.textBox4.TabIndex = 1;
             // 
             // textBox3
             // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(153, 67);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(168, 26);
+            this.textBox3.Size = new System.Drawing.Size(168, 23);
             this.textBox3.TabIndex = 1;
             // 
             // label9
@@ -426,9 +522,10 @@ namespace GestionDesEtudiants.Forms
             // textBox1
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(218, 18);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(180, 26);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 20);
+            this.textBox1.Size = new System.Drawing.Size(161, 23);
             this.textBox1.TabIndex = 2;
             // 
             // label1
@@ -436,7 +533,7 @@ namespace GestionDesEtudiants.Forms
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 18);
+            this.label1.Location = new System.Drawing.Point(24, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 17);
             this.label1.TabIndex = 1;
@@ -496,5 +593,9 @@ namespace GestionDesEtudiants.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn adresse;
         private System.Windows.Forms.DataGridViewTextBoxColumn tele;
         private System.Windows.Forms.DataGridViewTextBoxColumn filiere;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton iconButton8;
+        private FontAwesome.Sharp.IconButton iconButton7;
     }
 }

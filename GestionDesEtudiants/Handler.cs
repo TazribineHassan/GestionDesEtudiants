@@ -18,8 +18,17 @@ namespace GestionDesEtudiants
         public Connectivitie()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source = DESKTOP-566A95N\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
-            con.Open();
+            con.ConnectionString = "Data Source = DESKTOP-UBPJAU2\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
+            try
+            {
+                con.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                
+            }
+            
             con.Close();
         }
 

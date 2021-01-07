@@ -93,5 +93,15 @@ namespace GestionDesEtudiants.Forms
 
             }
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void iconButton8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
