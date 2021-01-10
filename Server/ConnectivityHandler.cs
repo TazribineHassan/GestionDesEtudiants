@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 
-namespace GestionDesEtudiants
+namespace Server
 {
-    class Handler
-    {
-
-    }
-
-    class Connectivitie
+    class ConnectivityHandler
     {
         private SqlConnection con;
-        public Connectivitie()
+        public ConnectivityHandler()
         {
             con = new SqlConnection();
             con.ConnectionString = "Data Source = DESKTOP-566A95N\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
@@ -26,9 +21,9 @@ namespace GestionDesEtudiants
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                
+
             }
-            
+
             con.Close();
         }
 
@@ -129,9 +124,53 @@ namespace GestionDesEtudiants
             return result;
         }
 
-        public int updateStudent(string CNE)
+        public int updateStudent(string CNE, Dictionary<string, string> data)
         {
-            return 0;
+
+            string sqlQuery = "UPDATE [STUDENT] SET ";
+            int counter = 1;
+            foreach (var element in data)
+            {
+                if (counter == data.Count)
+                {
+                    sqlQuery += element.Key + " = " + element.Value;
+                }
+                else
+                {
+                    sqlQuery += element.Key + " = " + element.Value + ", ";
+                }
+
+                counter++;
+            }
+
+            sqlQuery += " WHERE CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
+
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sqlQuery;
+            command.Parameters.Add(new SqlParameter("@CNE", CNE));
+
+            int nbRowsAffected = 0;
+            try
+            {
+                con.Open();
+                nbRowsAffected = command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return nbRowsAffected;
         }
 
         public Dictionary<string, List<Etudiant>> getStudentsByBranch()
@@ -140,9 +179,10 @@ namespace GestionDesEtudiants
             return null;
         }
 
+
         public int deleteStudent(string CNE)
         {
-            string requette = "DELETE FROM [STUDENT] WHERE CONVERT(NVARCHAR(MAX), [CNE]) = @CNE"; 
+            string requette = "DELETE FROM [STUDENT] WHERE CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
@@ -229,6 +269,38 @@ namespace GestionDesEtudiants
             return result;
         }
 
+        public int updateBranch(Filiere filiere)
+        {
+            string sqlQuery = "UPDATE [FILIERE] SET  [NOMFILIERE] = @NOM WHERE [IDFILIERE] = @ID";
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sqlQuery;
+            command.Parameters.Add(new SqlParameter("@ID", filiere.id));
+            command.Parameters.Add(new SqlParameter("@NOM", filiere.nom));
+
+            int nbRowsAffected = 0;
+            try
+            {
+                con.Open();
+                nbRowsAffected = command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return nbRowsAffected;
+        }
+
         public int deleteBranch(int ID)
         {
             string requette = "DELETE FROM [FILIERE] WHERE [IDFILIERE] = @ID";
@@ -260,6 +332,36 @@ namespace GestionDesEtudiants
             }
             return nbRowsAffected;
         }
+
+        public Dictionary<string, int> getStatistics()
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+
+            string sqlQuery = "SELECT CONVERT(NVARCHAR(MAX), [FILIERE].NOMFILIERE), COUNT([IDETUDIANT]) FROM [STUDENT] INNER JOIN [FILIERE] ON [STUDENT].IDFILIERE = [FILIERE].IDFILIERE GROUP BY CONVERT(NVARCHAR(MAX), [FILIERE].NOMFILIERE)";
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sqlQuery;
+            try
+            {
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result.Add(reader.GetString(0), reader.GetInt32(1));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
+        }
+
     }
 
     class Etudiant
@@ -299,5 +401,5 @@ namespace GestionDesEtudiants
             this.nom = nom;
         }
     }
-
 }
+
