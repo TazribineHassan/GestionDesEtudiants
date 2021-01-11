@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClassLibrary;
 
 namespace Server
 {
@@ -27,6 +28,7 @@ namespace Server
             con.Close();
         }
 
+        
         public int addStudent(Etudiant etudiant)
         {
             string requette = "INSERT INTO [STUDENT] ([IDETUDIANT] ,[IDFILIERE] ,[CNE] ,[NOM] ,[PRENOM]  ,[SEX]  ,[DATENAISSANCE]  ,[ADRESSE]  ,[TELEPHONE]) VALUES (@IDETUDIANT, @IDFILIERE, @CNE, @NOM, @PRENOM, @SEX, @DATENAISSANCE, @ADRESSE, @TELEPHONE)";
@@ -175,8 +177,36 @@ namespace Server
 
         public Dictionary<string, List<Etudiant>> getStudentsByBranch()
         {
+            Dictionary<string, List<Etudiant>> result = new Dictionary<string, List<Etudiant>>();
 
-            return null;
+            string requette = "SELECT [IDETUDIANT] ,[FILIERE].[IDFILIERE] ,[NOMFILIERE] ,[CNE] ,[NOM] ,[PRENOM] ,[SEX] ,[DATENAISSANCE] ,[ADRESSE] ,[TELEPHONE] FROM [STUDENT] INNER JOIN [FILIERE] ON [STUDENT].IDFILIERE = [FILIERE].IDFILIERE";
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = requette;
+            
+            try
+            {
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string BranchName = reader.GetString(2);
+                    if (!result.Keys.Contains(BranchName))
+                        result.Add(BranchName, new List<Etudiant>());
+
+                    //    [NOMFILIERE]                    [IDETUDIANT]                     [IDFILIERE]    [NOMFILIERE]          [CNE]               [NOM]                  [PRENOM]            [SEX]                [ADRESSE]         [DATENAISSANCE]         [TELEPHONE]
+                    result[BranchName].Add(new Etudiant(reader.GetInt32(0), new Filiere(reader.GetInt32(1), BranchName), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
         }
 
 
