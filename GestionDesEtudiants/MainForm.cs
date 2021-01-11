@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using GestionDesEtudiants.Forms;
+using ClassLibrary;
 
 namespace GestionDesEtudiants
 {
