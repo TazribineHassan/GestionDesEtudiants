@@ -29,21 +29,21 @@ namespace Server
         }
 
         
-        public int addStudent(Etudiant etudiant)
+        public int addStudent(Student student)
         {
             string requette = "INSERT INTO [STUDENT] ([IDETUDIANT] ,[IDFILIERE] ,[CNE] ,[NOM] ,[PRENOM]  ,[SEX]  ,[DATENAISSANCE]  ,[ADRESSE]  ,[TELEPHONE]) VALUES (@IDETUDIANT, @IDFILIERE, @CNE, @NOM, @PRENOM, @SEX, @DATENAISSANCE, @ADRESSE, @TELEPHONE)";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
-            command.Parameters.Add(new SqlParameter("@IDETUDIANT", etudiant.id));
-            command.Parameters.Add(new SqlParameter("@IDFILIERE", etudiant.filiere.id));
-            command.Parameters.Add(new SqlParameter("@CNE", etudiant.CNE));
-            command.Parameters.Add(new SqlParameter("@NOM", etudiant.nom));
-            command.Parameters.Add(new SqlParameter("@PRENOM", etudiant.prenom));
-            command.Parameters.Add(new SqlParameter("@SEX", etudiant.sex));
-            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", etudiant.dateNessance.ToString()));
-            command.Parameters.Add(new SqlParameter("@ADRESSE", etudiant.adresse));
-            command.Parameters.Add(new SqlParameter("@TELEPHONE", etudiant.telephone));
+            command.Parameters.Add(new SqlParameter("@IDETUDIANT", student.Id));
+            command.Parameters.Add(new SqlParameter("@IDFILIERE", student.Branch.Id));
+            command.Parameters.Add(new SqlParameter("@CNE", student.CNE));
+            command.Parameters.Add(new SqlParameter("@NOM", student.Nom));
+            command.Parameters.Add(new SqlParameter("@PRENOM", student.Prenom));
+            command.Parameters.Add(new SqlParameter("@SEX", student.Sex));
+            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance.ToString()));
+            command.Parameters.Add(new SqlParameter("@ADRESSE", student.Adresse));
+            command.Parameters.Add(new SqlParameter("@TELEPHONE", student.Telephone));
 
             int nbRowsAffected = 0;
             try
@@ -69,10 +69,10 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public Etudiant getStudent(string CNE)
+        public Student getStudent(string CNE)
         {
-            Etudiant result = null;
-            string requette = "SELECT [IDETUDIANT], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
+            Student result = null;
+            string requette = "SELECT [IDStudent], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
@@ -83,7 +83,7 @@ namespace Server
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    result = new Etudiant(reader.GetInt32(0), new Filiere(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9));
+                    result = new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9));
                 }
             }
             catch (Exception e)
@@ -97,9 +97,9 @@ namespace Server
             }
             return result;
         }
-        public List<Etudiant> getAllStudents()
+        public List<Student> getAllStudents()
         {
-            List<Etudiant> result = new List<Etudiant>();
+            List<Student> result = new List<Student>();
             string requette = "SELECT [IDETUDIANT] ,[FILIERE].[IDFILIERE] ,[NOMFILIERE] ,[CNE] ,[NOM] ,[PRENOM] ,[SEX] ,[DATENAISSANCE] ,[ADRESSE] ,[TELEPHONE] FROM [STUDENT] INNER JOIN [FILIERE] ON [STUDENT].IDFILIERE = [FILIERE].IDFILIERE";
 
             SqlCommand command = con.CreateCommand();
@@ -111,7 +111,7 @@ namespace Server
                 while (reader.Read())
                 {
                     //                               [IDETUDIANT]               [IDFILIERE]           [NOMFILIERE]       [CNE]               [NOM]                  [PRENOM]            [SEX]                [ADRESSE]             [DATENAISSANCE]         [TELEPHONE]
-                    result.Add(new Etudiant(reader.GetInt32(0), new Filiere(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
+                    result.Add(new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
                 }
             }
             catch (Exception e)
@@ -175,9 +175,9 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public Dictionary<string, List<Etudiant>> getStudentsByBranch()
+        public Dictionary<string, List<Student>> getStudentsByBranch()
         {
-            Dictionary<string, List<Etudiant>> result = new Dictionary<string, List<Etudiant>>();
+            Dictionary<string, List<Student>> result = new Dictionary<string, List<Student>>();
 
             string requette = "SELECT [IDETUDIANT] ,[FILIERE].[IDFILIERE] ,[NOMFILIERE] ,[CNE] ,[NOM] ,[PRENOM] ,[SEX] ,[DATENAISSANCE] ,[ADRESSE] ,[TELEPHONE] FROM [STUDENT] INNER JOIN [FILIERE] ON [STUDENT].IDFILIERE = [FILIERE].IDFILIERE";
             SqlCommand command = con.CreateCommand();
@@ -191,10 +191,10 @@ namespace Server
                 {
                     string BranchName = reader.GetString(2);
                     if (!result.Keys.Contains(BranchName))
-                        result.Add(BranchName, new List<Etudiant>());
+                        result.Add(BranchName, new List<Student>());
 
                     //    [NOMFILIERE]                    [IDETUDIANT]                     [IDFILIERE]    [NOMFILIERE]          [CNE]               [NOM]                  [PRENOM]            [SEX]                [ADRESSE]         [DATENAISSANCE]         [TELEPHONE]
-                    result[BranchName].Add(new Etudiant(reader.GetInt32(0), new Filiere(reader.GetInt32(1), BranchName), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
+                    result[BranchName].Add(new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), BranchName), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
                 }
             }
             catch (Exception e)
@@ -242,13 +242,13 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public int addBranch(Filiere filiere)
+        public int addBranch(Branch branch)
         {
             string requette = "INSERT INTO [FILIERE] ([IDFILIERE] ,[NOMFILIERE]) VALUES (@IDFILIERE, @NOMFILIERE)";
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
-            command.Parameters.Add(new SqlParameter("@IDFILIERE", filiere.id));
-            command.Parameters.Add(new SqlParameter("@NOMFILIERE", filiere.nom));
+            command.Parameters.Add(new SqlParameter("@IDFILIERE", branch.Id));
+            command.Parameters.Add(new SqlParameter("@NOMFILIERE", branch.Nom));
 
             int nbRowsAffected = 0;
             try
@@ -270,9 +270,9 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public List<Filiere> getAllBranchs()
+        public List<Branch> getAllBranchs()
         {
-            List<Filiere> result = new List<Filiere>();
+            List<Branch> result = new List<Branch>();
             string requette = "SELECT [IDFILIERE] ,[NOMFILIERE] FROM [FILIERE]";
 
             SqlCommand command = con.CreateCommand();
@@ -284,7 +284,7 @@ namespace Server
 
                 while (reader.Read())
                 {
-                    result.Add(new Filiere(reader.GetInt32(0), reader.GetString(1)));
+                    result.Add(new Branch(reader.GetInt32(0), reader.GetString(1)));
                 }
             }
             catch (Exception e)
@@ -299,13 +299,13 @@ namespace Server
             return result;
         }
 
-        public int updateBranch(Filiere filiere)
+        public int updateBranch(Branch branch)
         {
             string sqlQuery = "UPDATE [FILIERE] SET  [NOMFILIERE] = @NOM WHERE [IDFILIERE] = @ID";
             SqlCommand command = con.CreateCommand();
             command.CommandText = sqlQuery;
-            command.Parameters.Add(new SqlParameter("@ID", filiere.id));
-            command.Parameters.Add(new SqlParameter("@NOM", filiere.nom));
+            command.Parameters.Add(new SqlParameter("@ID", branch.Id));
+            command.Parameters.Add(new SqlParameter("@NOM", branch.Nom));
 
             int nbRowsAffected = 0;
             try
