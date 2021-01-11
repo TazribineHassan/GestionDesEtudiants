@@ -1,0 +1,9 @@
+D:\mini projets\GestionDesEtudiants\Server\bin\Debug\Server.exe.config
+D:\mini projets\GestionDesEtudiants\Server\bin\Debug\Server.exe
+D:\mini projets\GestionDesEtudiants\Server\bin\Debug\Server.pdb
+D:\mini projets\GestionDesEtudiants\Server\obj\Debug\Server.csprojAssemblyReference.cache
+D:\mini projets\GestionDesEtudiants\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\mini projets\GestionDesEtudiants\Server\obj\Debug\Server.exe
+D:\mini projets\GestionDesEtudiants\Server\obj\Debug\Server.pdb
+D:\mini projets\GestionDesEtudiants\Server\bin\Debug\ClassLibrary.dll
+D:\mini projets\GestionDesEtudiants\Server\obj\Debug\Server.csproj.CopyComplete
