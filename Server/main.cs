@@ -15,7 +15,7 @@ namespace Server
 
             Socket sock;
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.Bind(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234));
+            sock.Bind(new IPEndPoint(IPAddress.Any ,1234));
             sock.Listen(1);
 
             ConnectivityHandler connection = new ConnectivityHandler();
@@ -25,9 +25,9 @@ namespace Server
                 try
                 {
 
-                    Console.WriteLine("waiting for clients .......");
+                    Console.WriteLine("waiting for clients....");
                     Socket sockServeur = sock.Accept();
-                    Console.WriteLine("Client " + sockServeur.RemoteEndPoint + "Connected");
+                    Console.WriteLine("Client " + sockServeur.RemoteEndPoint + " Connected.");
                     new ClientHandler(connection, sockServeur).Start();
 
                 }

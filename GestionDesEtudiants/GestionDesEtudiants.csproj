@@ -75,11 +75,11 @@
     <Compile Include="Forms\ReportingOneStudnet.Designer.cs">
       <DependentUpon>ReportingOneStudnet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Student.cs">
+    <Compile Include="Forms\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Student.Designer.cs">
-      <DependentUpon>Student.cs</DependentUpon>
+    <Compile Include="Forms\StudentForm.Designer.cs">
+      <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -87,16 +87,16 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Branch.cs">
+    <Compile Include="Forms\BranchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Branch.Designer.cs">
-      <DependentUpon>Branch.cs</DependentUpon>
+    <Compile Include="Forms\BranchForm.Designer.cs">
+      <DependentUpon>BranchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Branch.resx">
-      <DependentUpon>Branch.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\BranchForm.resx">
+      <DependentUpon>BranchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Graphic.resx">
       <DependentUpon>Graphic.cs</DependentUpon>
@@ -107,8 +107,8 @@
     <EmbeddedResource Include="Forms\ReportingOneStudnet.resx">
       <DependentUpon>ReportingOneStudnet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Student.resx">
-      <DependentUpon>Student.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StudentForm.resx">
+      <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

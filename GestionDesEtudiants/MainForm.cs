@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Drawing;
+using System.Net;
+using System.Net.Sockets;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using GestionDesEtudiants.Forms;
-using ClassLibrary;
+
 
 namespace GestionDesEtudiants
 {
@@ -12,10 +14,24 @@ namespace GestionDesEtudiants
         private IconButton btn;
         private Panel leftPanelBtn;
         private Form currentForm;
-        
+        public static Socket socket;
+        IPEndPoint localEndPoint;
+
+
         public MainForm()
         {
             InitializeComponent();
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+            try
+            {
+                socket.Connect(localEndPoint);
+            }
+            catch (SocketException ex)
+            {
+                socket.Close();
+                Console.WriteLine("Unable to connect with the server try later (" + ex.Message + ")");
+            }
             leftPanelBtn = new Panel();
             leftPanelBtn.Size = new Size(5, 60);
             menu.Controls.Add(leftPanelBtn);
@@ -85,13 +101,13 @@ namespace GestionDesEtudiants
         private void btnBranchClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(241, 109, 109));
-            openForm(new Branch());
+            openForm(new BranchForm());
         }
 
         private void btnStudentClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(109, 233, 241));
-            openForm(new Student());
+            openForm(new StudentForm());
         }
 
         private void btnStaticsCilck(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace GestionDesEtudiants.Forms
 {
-    partial class Student
+    partial class StudentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -363,6 +363,7 @@ namespace GestionDesEtudiants.Forms
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(168, 23);
             this.textBox2.TabIndex = 4;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // radioButton2
             // 

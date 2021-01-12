@@ -1,13 +1,21 @@
 ﻿
+using System.Net.Sockets;
+
 namespace GestionDesEtudiants
 {
-    partial class Branch
+    partial class BranchForm
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        /// 
 
+        private System.ComponentModel.IContainer components = null;
+/*        private Socket socket;
+        public BranchForm(Socket sock)
+        {
+            socket = sock;
+        }*/
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -79,6 +87,7 @@ namespace GestionDesEtudiants
             this.BranchName.Name = "BranchName";
             this.BranchName.Size = new System.Drawing.Size(163, 28);
             this.BranchName.TabIndex = 1;
+            this.BranchName.TextChanged += new System.EventHandler(this.BranchName_TextChanged);
             // 
             // label1
             // 
@@ -152,7 +161,7 @@ namespace GestionDesEtudiants
             this.iconButton2.Text = "Modifier";
             this.iconButton2.UseVisualStyleBackColor = false;
             // 
-            // Branch
+            // BranchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -163,7 +172,7 @@ namespace GestionDesEtudiants
             this.Controls.Add(this.iconButton2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Branch";
+            this.Name = "BranchForm";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Branch_Load);
             this.groupBox1.ResumeLayout(false);

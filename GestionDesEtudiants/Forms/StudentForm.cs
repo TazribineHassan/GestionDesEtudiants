@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace GestionDesEtudiants.Forms
 {
-    public partial class Student : Form
+    public partial class StudentForm : Form
     {
-        private Connectivitie connectivitie;
+
         private int id = 15;
-        public Student()
+        public StudentForm()
         {
             InitializeComponent();
-            connectivitie = new Connectivitie();
+
             actualiserLeTableau();
 
             //désactiver l'édition du tableau
@@ -30,11 +30,11 @@ namespace GestionDesEtudiants.Forms
         private void actualiserLeTableau()
         {
             dataGridView1.Rows.Clear();
-            List<Etudiant> etudiants = connectivitie.avoirTousLesEtudiant();
+/*            List<Etudiant> etudiants = connectivitie.avoirTousLesEtudiant();
                 foreach (Etudiant etudiant in etudiants)
                 {
                     dataGridView1.Rows.Add(etudiant.CNE, etudiant.nom, etudiant.prenom, etudiant.sex, etudiant.dateNessance, etudiant.adresse, etudiant.telephone, etudiant.filiere.nom);
-                }
+                }*/
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace GestionDesEtudiants.Forms
         private void iconButton2_Click(object sender, EventArgs e)
         {
 
-            if(connectivitie.AjouterEtudiant(new Etudiant(id, new Filiere(1, "GINFO"), textBox2.Text, textBox3.Text, textBox4.Text, radioButton1.Checked ? "feminin" : "masculin", textBox7.Text, dateTimePicker1.Value, textBox8.Text)) == 1)
+/*            if(connectivitie.AjouterEtudiant(new Etudiant(id, new Filiere(1, "GINFO"), textBox2.Text, textBox3.Text, textBox4.Text, radioButton1.Checked ? "feminin" : "masculin", textBox7.Text, dateTimePicker1.Value, textBox8.Text)) == 1)
             {
                 Console.WriteLine("i'm in");
                 textBox2.Text = "";
@@ -73,12 +73,12 @@ namespace GestionDesEtudiants.Forms
                 textBox8.Text = "";
                 id++;
                 actualiserLeTableau();
-            }
+            }*/
         }
 
         private void iconButton4_Click(object sender, EventArgs e)
         {
-            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+/*            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
             {
                 int lignes = 0;
@@ -91,7 +91,7 @@ namespace GestionDesEtudiants.Forms
 
                 MessageBox.Show(lignes + " lignes ont ete supprime", "lignes supprime");
 
-            }
+            }*/
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -101,6 +101,11 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

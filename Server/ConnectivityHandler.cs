@@ -14,7 +14,7 @@ namespace Server
         public ConnectivityHandler()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source = DESKTOP-UBPJAU2\\ENSASDB Initial Catalog = StudentManagementDatabase; Integrated Security = true";
+            con.ConnectionString = "Data Source = DESKTOP-UBPJAU2\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
             try
             {
                 con.Open();
@@ -394,42 +394,5 @@ namespace Server
 
     }
 
-    class Etudiant
-    {
-        public int id { get; }
-        public Filiere filiere { get; }
-        public string CNE { get; }
-        public string nom { get; }
-        public string prenom { get; }
-        public string sex { get; }
-        public string adresse { get; }
-        public DateTime dateNessance { get; }
-        public string telephone { get; }
-
-        public Etudiant(int id, Filiere filiere, string CNE, string nom, string prenom, string sex, string adresse, DateTime dateNessance, string telephone)
-        {
-            this.id = id;
-            this.filiere = filiere;
-            this.CNE = CNE;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.sex = sex;
-            this.adresse = adresse;
-            this.dateNessance = dateNessance;
-            this.telephone = telephone;
-        }
-    }
-
-    class Filiere
-    {
-        public int id { get; }
-        public string nom { get; }
-
-        public Filiere(int id, string nom)
-        {
-            this.id = id;
-            this.nom = nom;
-        }
-    }
 }
 
