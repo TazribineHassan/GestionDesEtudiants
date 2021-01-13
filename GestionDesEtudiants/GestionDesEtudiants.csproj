@@ -63,6 +63,12 @@
     <Compile Include="Forms\Graphic.Designer.cs">
       <DependentUpon>Graphic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MessageUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MessageUpdate.Designer.cs">
+      <DependentUpon>MessageUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Reporting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Graphic.resx">
       <DependentUpon>Graphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MessageUpdate.resx">
+      <DependentUpon>MessageUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reporting.resx">
       <DependentUpon>Reporting.cs</DependentUpon>
@@ -140,7 +149,6 @@
   <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Libraries\ClassLibrary.dll" />
   </ItemGroup>
