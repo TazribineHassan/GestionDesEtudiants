@@ -30,6 +30,7 @@ namespace GestionDesEtudiants.Forms
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.validate = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cne = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +68,7 @@ namespace GestionDesEtudiants.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.cneSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.id_student = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -76,6 +78,7 @@ namespace GestionDesEtudiants.Forms
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(251)))));
+            this.panel1.Controls.Add(this.validate);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.iconButton5);
@@ -94,6 +97,29 @@ namespace GestionDesEtudiants.Forms
             this.panel1.Size = new System.Drawing.Size(984, 476);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // validate
+            // 
+            this.validate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.validate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.validate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.validate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.validate.ForeColor = System.Drawing.Color.White;
+            this.validate.IconChar = FontAwesome.Sharp.IconChar.Check;
+            this.validate.IconColor = System.Drawing.Color.White;
+            this.validate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.validate.IconSize = 35;
+            this.validate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.validate.Location = new System.Drawing.Point(147, 408);
+            this.validate.Name = "validate";
+            this.validate.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.validate.Size = new System.Drawing.Size(116, 49);
+            this.validate.TabIndex = 8;
+            this.validate.Text = "Valider";
+            this.validate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.validate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.validate.UseVisualStyleBackColor = false;
+            this.validate.Click += new System.EventHandler(this.validate_Click);
             // 
             // iconButton1
             // 
@@ -114,7 +140,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Click += new System.EventHandler(this.grabStudentByCNE);
+            this.iconButton1.Click += new System.EventHandler(this.getStudentByCNE);
             // 
             // dataGridView1
             // 
@@ -128,7 +154,8 @@ namespace GestionDesEtudiants.Forms
             this.dateNnaissance,
             this.adresse,
             this.tele,
-            this.filiere});
+            this.filiere,
+            this.id_student});
             this.dataGridView1.Location = new System.Drawing.Point(416, 110);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(556, 279);
@@ -159,6 +186,7 @@ namespace GestionDesEtudiants.Forms
             this.dateNnaissance.HeaderText = "Date de naissance";
             this.dateNnaissance.Name = "dateNnaissance";
             this.dateNnaissance.ReadOnly = true;
+            this.dateNnaissance.Width = 120;
             // 
             // adresse
             // 
@@ -216,7 +244,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton4.Text = "Supprimer";
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = false;
-            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
+            this.iconButton4.Click += new System.EventHandler(this.deleteStudent_Click);
             // 
             // iconButton8
             // 
@@ -279,6 +307,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton6.Text = "Charger les données";
             this.iconButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton6.UseVisualStyleBackColor = false;
+            this.iconButton6.Click += new System.EventHandler(this.getAllStudents_Click);
             // 
             // iconButton3
             // 
@@ -298,6 +327,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton3.Text = "Modifier";
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = false;
+            this.iconButton3.Click += new System.EventHandler(this.updateStudent_Click);
             // 
             // addStudent
             // 
@@ -310,7 +340,7 @@ namespace GestionDesEtudiants.Forms
             this.addStudent.IconColor = System.Drawing.Color.White;
             this.addStudent.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.addStudent.IconSize = 35;
-            this.addStudent.Location = new System.Drawing.Point(162, 408);
+            this.addStudent.Location = new System.Drawing.Point(147, 408);
             this.addStudent.Name = "addStudent";
             this.addStudent.Size = new System.Drawing.Size(116, 49);
             this.addStudent.TabIndex = 5;
@@ -545,6 +575,12 @@ namespace GestionDesEtudiants.Forms
             this.label1.Text = "Chercher un etudiant: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // id_student
+            // 
+            this.id_student.HeaderText = "Id Etudaint";
+            this.id_student.Name = "id_student";
+            this.id_student.Visible = false;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,6 +625,11 @@ namespace GestionDesEtudiants.Forms
         private FontAwesome.Sharp.IconButton iconButton4;
         private FontAwesome.Sharp.IconButton iconButton3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton6;
+        private FontAwesome.Sharp.IconButton iconButton8;
+        private FontAwesome.Sharp.IconButton iconButton7;
+        private System.Windows.Forms.ComboBox branchStudent;
         private System.Windows.Forms.DataGridViewTextBoxColumn cne;
         private System.Windows.Forms.DataGridViewTextBoxColumn nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn prenom;
@@ -597,10 +638,7 @@ namespace GestionDesEtudiants.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn adresse;
         private System.Windows.Forms.DataGridViewTextBoxColumn tele;
         private System.Windows.Forms.DataGridViewTextBoxColumn filiere;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton6;
-        private FontAwesome.Sharp.IconButton iconButton8;
-        private FontAwesome.Sharp.IconButton iconButton7;
-        private System.Windows.Forms.ComboBox branchStudent;
+        private FontAwesome.Sharp.IconButton validate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_student;
     }
 }
