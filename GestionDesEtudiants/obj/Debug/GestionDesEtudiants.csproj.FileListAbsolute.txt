@@ -35,3 +35,4 @@ D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\ClassLibrary.d
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.BranchForm.resources
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.StudentForm.resources
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageUpdate.resources
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
