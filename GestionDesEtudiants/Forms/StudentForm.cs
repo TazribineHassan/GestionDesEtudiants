@@ -121,6 +121,7 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
+            dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Descending);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -161,6 +162,16 @@ namespace GestionDesEtudiants.Forms
                 Console.WriteLine(ex.Message);
             }
 
+
+        }
+
+        private void iconButton7_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Sort(dataGridView1.Columns[""], ListSortDirection.Ascending);
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
 
         }
     }

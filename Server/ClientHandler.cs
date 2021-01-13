@@ -31,6 +31,7 @@ namespace Server
                 {
                     buffer = new byte[1024];
                     size = socket.Receive(buffer);
+                    Console.WriteLine("size = " + size);
                     Array.Resize(ref buffer, size);
                     Request request = (Request)SerializeDeserializeObject.Deserialize(buffer);
 
@@ -50,8 +51,8 @@ namespace Server
                             break;
 
                         case RequestType.UpdateStudent:
-                            Dictionary<string, string> data = (Dictionary<string, string>)request.Data;
-                            nbRowsAffected = connection.updateStudent("", data);
+                            Student data = (Student)request.Data;
+                            nbRowsAffected = connection.updateStudent(data);
                             if (nbRowsAffected > 0)
                                 answer = true;
                             else
@@ -123,8 +124,9 @@ namespace Server
                 catch(Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    socket.Close();
-                    socket.Dispose();
+                    Console.WriteLine(e.StackTrace);
+                    /*socket.Close();
+                    socket.Dispose();*/
                     break;
                 }
 

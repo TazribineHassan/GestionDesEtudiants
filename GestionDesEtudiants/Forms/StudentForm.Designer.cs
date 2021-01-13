@@ -196,6 +196,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton5.Text = "Importer";
             this.iconButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton5.UseVisualStyleBackColor = false;
+            this.iconButton5.Click += new System.EventHandler(this.iconButton5_Click);
             // 
             // iconButton4
             // 
@@ -257,6 +258,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton7.Text = "Tri croissant";
             this.iconButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton7.UseVisualStyleBackColor = false;
+            this.iconButton7.Click += new System.EventHandler(this.iconButton7_Click);
             // 
             // iconButton6
             // 

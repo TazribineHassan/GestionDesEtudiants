@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,7 +16,7 @@ namespace Server
 
             Socket sock;
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.Bind(new IPEndPoint(IPAddress.Any ,1234));
+            sock.Bind(new IPEndPoint(IPAddress.Any, 1234));
             sock.Listen(1);
 
             ConnectivityHandler connection = new ConnectivityHandler();
@@ -41,12 +42,8 @@ namespace Server
 
             /*//just testing
             ConnectivityHandler conn = new ConnectivityHandler();
-            foreach (var element in conn.getAllBranchs())
-            {
 
-                Console.WriteLine("full name = " + element.Nom + " " );
-                
-            }
+            conn.updateStudent(new Student(2, new Branch(1, "ghj"), "test", "test10", "test10", "test10", "test10", DateTime.Now, "test1"));
             Console.Read();*/
         }
 

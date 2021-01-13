@@ -41,7 +41,7 @@ namespace Server
             command.Parameters.Add(new SqlParameter("@NOM", student.Nom));
             command.Parameters.Add(new SqlParameter("@PRENOM", student.Prenom));
             command.Parameters.Add(new SqlParameter("@SEX", student.Sex));
-            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance.ToShortDateString()));
+            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance));
             command.Parameters.Add(new SqlParameter("@ADRESSE", student.Adresse));
             command.Parameters.Add(new SqlParameter("@TELEPHONE", student.Telephone));
 
@@ -126,30 +126,23 @@ namespace Server
             return result;
         }
 
-        public int updateStudent(string CNE, Dictionary<string, string> data)
+        public int updateStudent(Student student)
         {
 
-            string sqlQuery = "UPDATE [STUDENT] SET ";
-            int counter = 1;
-            foreach (var element in data)
-            {
-                if (counter == data.Count)
-                {
-                    sqlQuery += element.Key + " = " + element.Value;
-                }
-                else
-                {
-                    sqlQuery += element.Key + " = " + element.Value + ", ";
-                }
-
-                counter++;
-            }
-
-            sqlQuery += " WHERE CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
+            string sqlQuery = "UPDATE [STUDENT] SET [IDFILIERE] = @IDFILIERE,[CNE] = @CNE, [NOM] = @NOM, [PRENOM] = @PRENOM,[SEX] =   @SEX, [DATENAISSANCE] =  @DATENAISSANCE,[ADRESSE] =  @ADRESSE,[TELEPHONE]  = @TELEPHONE"
+                            + " WHERE [IDETUDIANT] = @ID";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = sqlQuery;
-            command.Parameters.Add(new SqlParameter("@CNE", CNE));
+            command.Parameters.Add(new SqlParameter("@ID", student.Id));
+            command.Parameters.Add(new SqlParameter("@IDFILIERE", student.Branch.Id));
+            command.Parameters.Add(new SqlParameter("@CNE", student.CNE));
+            command.Parameters.Add(new SqlParameter("@NOM", student.Nom));
+            command.Parameters.Add(new SqlParameter("@PRENOM", student.Prenom));
+            command.Parameters.Add(new SqlParameter("@SEX", student.Sex));
+            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance));
+            command.Parameters.Add(new SqlParameter("@ADRESSE", student.Adresse));
+            command.Parameters.Add(new SqlParameter("@TELEPHONE", student.Telephone));
 
             int nbRowsAffected = 0;
             try
