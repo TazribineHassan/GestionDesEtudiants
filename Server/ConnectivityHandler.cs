@@ -31,17 +31,17 @@ namespace Server
         
         public int addStudent(Student student)
         {
-            string requette = "INSERT INTO [STUDENT] ([IDETUDIANT] ,[IDFILIERE] ,[CNE] ,[NOM] ,[PRENOM]  ,[SEX]  ,[DATENAISSANCE]  ,[ADRESSE]  ,[TELEPHONE]) VALUES (@IDETUDIANT, @IDFILIERE, @CNE, @NOM, @PRENOM, @SEX, @DATENAISSANCE, @ADRESSE, @TELEPHONE)";
+            string requette = "INSERT INTO [STUDENT] ([IDFILIERE] ,[CNE] ,[NOM] ,[PRENOM]  ,[SEX]  ,[DATENAISSANCE]  ,[ADRESSE]  ,[TELEPHONE]) VALUES (@IDFILIERE, @CNE, @NOM, @PRENOM, @SEX, @DATENAISSANCE, @ADRESSE, @TELEPHONE)";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
-            command.Parameters.Add(new SqlParameter("@IDETUDIANT", student.Id));
+            //command.Parameters.Add(new SqlParameter("@IDETUDIANT", student.Id));
             command.Parameters.Add(new SqlParameter("@IDFILIERE", student.Branch.Id));
             command.Parameters.Add(new SqlParameter("@CNE", student.CNE));
             command.Parameters.Add(new SqlParameter("@NOM", student.Nom));
             command.Parameters.Add(new SqlParameter("@PRENOM", student.Prenom));
             command.Parameters.Add(new SqlParameter("@SEX", student.Sex));
-            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance.ToString()));
+            command.Parameters.Add(new SqlParameter("@DATENAISSANCE", student.DateNessance.ToShortDateString()));
             command.Parameters.Add(new SqlParameter("@ADRESSE", student.Adresse));
             command.Parameters.Add(new SqlParameter("@TELEPHONE", student.Telephone));
 
@@ -72,7 +72,7 @@ namespace Server
         public Student getStudent(string CNE)
         {
             Student result = null;
-            string requette = "SELECT [IDStudent], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
+            string requette = "SELECT [IDETUDIANT], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
 
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
@@ -244,10 +244,10 @@ namespace Server
 
         public int addBranch(Branch branch)
         {
-            string requette = "INSERT INTO [FILIERE] ([IDFILIERE] ,[NOMFILIERE]) VALUES (@IDFILIERE, @NOMFILIERE)";
+            string requette = "INSERT INTO [FILIERE] ([NOMFILIERE]) VALUES (@NOMFILIERE)";
             SqlCommand command = con.CreateCommand();
             command.CommandText = requette;
-            command.Parameters.Add(new SqlParameter("@IDFILIERE", branch.Id));
+            /*command.Parameters.Add(new SqlParameter("@IDFILIERE", branch.Id));*/
             command.Parameters.Add(new SqlParameter("@NOMFILIERE", branch.Nom));
 
             int nbRowsAffected = 0;

@@ -297,6 +297,7 @@ namespace GestionDesEtudiants
             this.Controls.Add(this.header);
             this.Controls.Add(this.menu);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application de gestion des étudiants";
             this.menu.ResumeLayout(false);
             this.subMenu.ResumeLayout(false);

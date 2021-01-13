@@ -46,17 +46,17 @@ namespace GestionDesEtudiants.Forms
             this.iconButton7 = new FontAwesome.Sharp.IconButton();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.addStudent = new FontAwesome.Sharp.IconButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.branchStudent = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cneStudent = new System.Windows.Forms.TextBox();
+            this.male = new System.Windows.Forms.RadioButton();
+            this.female = new System.Windows.Forms.RadioButton();
+            this.phone = new System.Windows.Forms.TextBox();
+            this.address = new System.Windows.Forms.TextBox();
+            this.studenLastName = new System.Windows.Forms.TextBox();
+            this.studentName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@ namespace GestionDesEtudiants.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cneSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -84,9 +84,9 @@ namespace GestionDesEtudiants.Forms
             this.panel1.Controls.Add(this.iconButton7);
             this.panel1.Controls.Add(this.iconButton6);
             this.panel1.Controls.Add(this.iconButton3);
-            this.panel1.Controls.Add(this.iconButton2);
+            this.panel1.Controls.Add(this.addStudent);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.cneSearch);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -114,6 +114,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.grabStudentByCNE);
             // 
             // dataGridView1
             // 
@@ -296,38 +297,38 @@ namespace GestionDesEtudiants.Forms
             this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton3.UseVisualStyleBackColor = false;
             // 
-            // iconButton2
+            // addStudent
             // 
-            this.iconButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
-            this.iconButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.ForeColor = System.Drawing.Color.White;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.iconButton2.IconColor = System.Drawing.Color.White;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 35;
-            this.iconButton2.Location = new System.Drawing.Point(162, 408);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(116, 49);
-            this.iconButton2.TabIndex = 5;
-            this.iconButton2.Text = "Ajouter";
-            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            this.addStudent.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.addStudent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addStudent.ForeColor = System.Drawing.Color.White;
+            this.addStudent.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.addStudent.IconColor = System.Drawing.Color.White;
+            this.addStudent.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.addStudent.IconSize = 35;
+            this.addStudent.Location = new System.Drawing.Point(162, 408);
+            this.addStudent.Name = "addStudent";
+            this.addStudent.Size = new System.Drawing.Size(116, 49);
+            this.addStudent.TabIndex = 5;
+            this.addStudent.Text = "Ajouter";
+            this.addStudent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.addStudent.UseVisualStyleBackColor = false;
+            this.addStudent.Click += new System.EventHandler(this.addStudent_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.branchStudent);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.cneStudent);
+            this.groupBox1.Controls.Add(this.male);
+            this.groupBox1.Controls.Add(this.female);
+            this.groupBox1.Controls.Add(this.phone);
+            this.groupBox1.Controls.Add(this.address);
+            this.groupBox1.Controls.Add(this.studenLastName);
+            this.groupBox1.Controls.Add(this.studentName);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -346,6 +347,15 @@ namespace GestionDesEtudiants.Forms
             this.groupBox1.Text = "Informations Etudiant";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // branchStudent
+            // 
+            this.branchStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.branchStudent.FormattingEnabled = true;
+            this.branchStudent.Location = new System.Drawing.Point(152, 301);
+            this.branchStudent.Name = "branchStudent";
+            this.branchStudent.Size = new System.Drawing.Size(169, 24);
+            this.branchStudent.TabIndex = 6;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -356,80 +366,72 @@ namespace GestionDesEtudiants.Forms
             this.dateTimePicker1.TabIndex = 5;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // textBox2
+            // cneStudent
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(153, 25);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 23);
-            this.textBox2.TabIndex = 4;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.cneStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cneStudent.Location = new System.Drawing.Point(153, 25);
+            this.cneStudent.Name = "cneStudent";
+            this.cneStudent.Size = new System.Drawing.Size(168, 23);
+            this.cneStudent.TabIndex = 4;
+            this.cneStudent.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // radioButton2
+            // male
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.Black;
-            this.radioButton2.Location = new System.Drawing.Point(280, 152);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(37, 21);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "M";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.male.AutoSize = true;
+            this.male.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.male.ForeColor = System.Drawing.Color.Black;
+            this.male.Location = new System.Drawing.Point(280, 152);
+            this.male.Name = "male";
+            this.male.Size = new System.Drawing.Size(37, 21);
+            this.male.TabIndex = 3;
+            this.male.TabStop = true;
+            this.male.Text = "M";
+            this.male.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // female
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.Black;
-            this.radioButton1.Location = new System.Drawing.Point(152, 152);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(34, 21);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "F";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.female.AutoSize = true;
+            this.female.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.female.ForeColor = System.Drawing.Color.Black;
+            this.female.Location = new System.Drawing.Point(152, 152);
+            this.female.Name = "female";
+            this.female.Size = new System.Drawing.Size(34, 21);
+            this.female.TabIndex = 2;
+            this.female.TabStop = true;
+            this.female.Text = "F";
+            this.female.UseVisualStyleBackColor = true;
             // 
-            // textBox9
+            // phone
             // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(153, 302);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(168, 23);
-            this.textBox9.TabIndex = 1;
+            this.phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phone.Location = new System.Drawing.Point(153, 265);
+            this.phone.Name = "phone";
+            this.phone.Size = new System.Drawing.Size(168, 23);
+            this.phone.TabIndex = 1;
             // 
-            // textBox8
+            // address
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(153, 265);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(168, 23);
-            this.textBox8.TabIndex = 1;
+            this.address.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.address.Location = new System.Drawing.Point(153, 224);
+            this.address.Name = "address";
+            this.address.Size = new System.Drawing.Size(168, 23);
+            this.address.TabIndex = 1;
             // 
-            // textBox7
+            // studenLastName
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(153, 224);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(168, 23);
-            this.textBox7.TabIndex = 1;
+            this.studenLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studenLastName.Location = new System.Drawing.Point(153, 106);
+            this.studenLastName.Name = "studenLastName";
+            this.studenLastName.Size = new System.Drawing.Size(168, 23);
+            this.studenLastName.TabIndex = 1;
             // 
-            // textBox4
+            // studentName
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(153, 106);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(168, 23);
-            this.textBox4.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(153, 67);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(168, 23);
-            this.textBox3.TabIndex = 1;
+            this.studentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentName.Location = new System.Drawing.Point(153, 67);
+            this.studentName.Name = "studentName";
+            this.studentName.Size = new System.Drawing.Size(168, 23);
+            this.studentName.TabIndex = 1;
             // 
             // label9
             // 
@@ -520,14 +522,14 @@ namespace GestionDesEtudiants.Forms
             this.label2.TabIndex = 0;
             this.label2.Text = "CNE : ";
             // 
-            // textBox1
+            // cneSearch
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(180, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 23);
-            this.textBox1.TabIndex = 2;
+            this.cneSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cneSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cneSearch.Location = new System.Drawing.Point(180, 26);
+            this.cneSearch.Name = "cneSearch";
+            this.cneSearch.Size = new System.Drawing.Size(161, 23);
+            this.cneSearch.TabIndex = 2;
             // 
             // label1
             // 
@@ -541,14 +543,14 @@ namespace GestionDesEtudiants.Forms
             this.label1.Text = "Chercher un etudiant: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Student
+            // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(984, 476);
             this.Controls.Add(this.panel1);
-            this.Name = "Student";
+            this.Name = "StudentForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -562,7 +564,7 @@ namespace GestionDesEtudiants.Forms
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cneSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -572,16 +574,15 @@ namespace GestionDesEtudiants.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox phone;
+        private System.Windows.Forms.TextBox address;
+        private System.Windows.Forms.TextBox studenLastName;
+        private System.Windows.Forms.TextBox studentName;
+        private System.Windows.Forms.RadioButton male;
+        private System.Windows.Forms.RadioButton female;
+        private System.Windows.Forms.TextBox cneStudent;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton addStudent;
         private FontAwesome.Sharp.IconButton iconButton5;
         private FontAwesome.Sharp.IconButton iconButton4;
         private FontAwesome.Sharp.IconButton iconButton3;
@@ -598,5 +599,6 @@ namespace GestionDesEtudiants.Forms
         private FontAwesome.Sharp.IconButton iconButton6;
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton iconButton7;
+        private System.Windows.Forms.ComboBox branchStudent;
     }
 }
