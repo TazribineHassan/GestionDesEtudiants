@@ -118,6 +118,7 @@ namespace Server
                     }
 
                     byte[] bufferAnswer = SerializeDeserializeObject.Serialize(answer);
+                    Console.WriteLine("size sent = " + bufferAnswer.Length);
                     socket.Send(bufferAnswer);
 
                 }

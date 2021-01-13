@@ -129,6 +129,7 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
+            dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Descending);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -183,7 +184,7 @@ namespace GestionDesEtudiants.Forms
                 Request request = new Request(RequestType.GetAllStudnets, null);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
                 MainForm.socket.Send(buffer);
-                buffer = new byte[1024];
+                buffer = new byte[1024 * 1024];
                 int size = MainForm.socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 dataGridView1.Rows.Clear();

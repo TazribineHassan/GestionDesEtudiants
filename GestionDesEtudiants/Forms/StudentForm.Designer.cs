@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.ComponentModel;
+
 namespace GestionDesEtudiants.Forms
 {
     partial class StudentForm
@@ -596,6 +599,16 @@ namespace GestionDesEtudiants.Forms
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void iconButton7_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Ascending);
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+           
         }
 
         #endregion
