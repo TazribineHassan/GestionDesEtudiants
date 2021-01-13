@@ -65,7 +65,7 @@ namespace GestionDesEtudiants
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            Request request = new Request(RequestType.AddBranch, new Branch(5, BranchName.Text));
+            Request request = new Request(RequestType.AddBranch, new Branch(6, BranchName.Text));
             byte[] buffer = SerializeDeserializeObject.Serialize(request);
             MainForm.socket.Send(buffer);
             buffer = new byte[1024];
