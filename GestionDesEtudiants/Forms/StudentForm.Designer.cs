@@ -628,6 +628,7 @@ namespace GestionDesEtudiants.Forms
             }
             ExcelViewer excelViewer = new ExcelViewer(ExcelReader.ReadFromExcel(filePath));
             excelViewer.ShowDialog();
+            refreshDataGrid();
         }
 
         #endregion
