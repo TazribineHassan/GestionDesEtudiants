@@ -58,7 +58,7 @@ namespace GestionDesEtudiants.Forms
             this.chart1.Cursor = System.Windows.Forms.Cursors.Hand;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(179, 60);
+            this.chart1.Location = new System.Drawing.Point(184, 66);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";

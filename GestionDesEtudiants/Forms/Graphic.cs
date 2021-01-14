@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using ClassLibrary;
 
 namespace GestionDesEtudiants.Forms
 {
@@ -15,6 +17,34 @@ namespace GestionDesEtudiants.Forms
         public Graphic()
         {
             InitializeComponent();
+            Request request = new Request(RequestType.GetStatics, null);
+            byte[] buffer = SerializeDeserializeObject.Serialize(request);
+            MainForm.socket.Send(buffer);
+            buffer = new byte[1024 * 1024];
+            int size = MainForm.socket.Receive(buffer);
+            Array.Resize(ref buffer, size);
+            int total = 0;
+            Dictionary<string, int> answer = (Dictionary<string, int>)SerializeDeserializeObject.Deserialize(buffer);
+            foreach (var item in answer)
+            {
+                total += item.Value;
+            }
+            int position = 0;
+            foreach (var item in answer)
+            {
+                
+                string percentage = Math.Round(((double)(item.Value * 100) / total), 2)  + "%";
+                setGraph(item.Value, item.Key, percentage, position);
+                position += 1;
+                //Console.WriteLine(percentage + "  " + position);
+            }
+        }
+
+        private void setGraph(int yValue, string axisLable, string label, int position)
+        {
+            chart1.Series["Nombre Etudiant"].Points.Add(yValue);
+            chart1.Series["Nombre Etudiant"].Points[position].AxisLabel = axisLable;
+            chart1.Series["Nombre Etudiant"].Points[position].Label = label;
         }
     }
 }
