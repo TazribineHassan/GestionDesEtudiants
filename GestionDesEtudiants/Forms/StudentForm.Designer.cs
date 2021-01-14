@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace GestionDesEtudiants.Forms
 {
@@ -608,7 +609,25 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton5_Click(object sender, EventArgs e)
         {
-           
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Excel files (*.xls)|*.xls";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+
+                }
+            }
+            ExcelViewer excelViewer = new ExcelViewer(ExcelReader.ReadFromExcel(filePath));
+            excelViewer.ShowDialog();
         }
 
         #endregion
