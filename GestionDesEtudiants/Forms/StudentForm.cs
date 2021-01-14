@@ -206,7 +206,7 @@ namespace GestionDesEtudiants.Forms
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
             {
-                int lignes = 0;
+                //int lignes = 0;
                 for (int i = 0; i < selectedRowCount; i++)
                 {
                     // Get the data from the datagrid view and sotre it in textboxes

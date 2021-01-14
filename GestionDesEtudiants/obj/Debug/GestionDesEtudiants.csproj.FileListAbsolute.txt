@@ -40,3 +40,7 @@ C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\Ge
 =======
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
 >>>>>>> 79135b960bf321e5702110bf7b7c8b05e68ac8ce
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using GestionDesEtudiants.Forms;
-
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace GestionDesEtudiants
 {
@@ -148,9 +150,26 @@ namespace GestionDesEtudiants
             openForm(new ReportingOneStudnet());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void download_Click(object sender, EventArgs e)
         {
             openForm(new Reporting());
+            DialogResult dialogResult = MessageBox.Show("Vous voulez Télécharger le Reporting", "Télécharger le Reporting", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Document document = new Document();
+                PdfWriter.GetInstance(document, new FileStream("C:\\Users\\admin\\Desktop\\Reporting.pdf", FileMode.Create));
+                document.Open();
+                iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance("C:\\Users\\admin\\source\\repos\\GestionDesEtudiants\\GestionDesEtudiants\\Resources\\logo.png");
+                //ensasLogo.ScalePercent(10f);
+                ensasLogo.IndentationRight(20f);
+                document.Add(ensasLogo);
+                document.Add(new Paragraph("Hello worrld"));
+                document.Close();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
         }
     }
 
