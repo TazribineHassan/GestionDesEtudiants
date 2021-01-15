@@ -8,6 +8,8 @@ using FontAwesome.Sharp;
 using GestionDesEtudiants.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using ClassLibrary;
+using System.Collections.Generic;
 
 namespace GestionDesEtudiants
 {
@@ -156,15 +158,79 @@ namespace GestionDesEtudiants
             DialogResult dialogResult = MessageBox.Show("Vous voulez Télécharger le Reporting", "Télécharger le Reporting", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Document document = new Document();
-                PdfWriter.GetInstance(document, new FileStream("C:\\Users\\admin\\Desktop\\Reporting.pdf", FileMode.Create));
-                document.Open();
-                iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance("C:\\Users\\admin\\source\\repos\\GestionDesEtudiants\\GestionDesEtudiants\\Resources\\logo.png");
-                //ensasLogo.ScalePercent(10f);
-                ensasLogo.IndentationRight(20f);
-                document.Add(ensasLogo);
-                document.Add(new Paragraph("Hello worrld"));
-                document.Close();
+                try
+                {
+                    Request request = new Request(RequestType.GetStudentByBranch, null);
+                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                    socket.Send(buffer);
+                    buffer = new byte[1024 * 1024];
+                    int size = socket.Receive(buffer);
+                    Array.Resize(ref buffer, size);
+                    Dictionary<string, List<Student>> StudentsByBranch = (Dictionary<string, List<Student>>)SerializeDeserializeObject.Deserialize(buffer);
+
+                    // Create the pdf
+                    Document document = new Document();
+                    PdfWriter.GetInstance(document, new FileStream(@"C:\Users\admin\Desktop\Reporting.pdf", FileMode.Create));
+                    document.Open();
+                    // ENSAS Logo
+                    iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\logo.png");
+                    ensasLogo.ScalePercent(50);
+                    ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
+                    document.Add(ensasLogo);
+                    // UCA Logo
+                    iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\ucaLogo.jpg");
+                    ucaLogo.ScalePercent(50);
+                    ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
+                    document.Add(ucaLogo);
+                    // Title 
+                    Paragraph paragraph = new Paragraph("Ecole Nationale des Sciences Appliquées de safi");
+                    paragraph.IndentationLeft = 130f;
+                    document.Add(paragraph);
+
+                    //New Lines  
+                    document.Add(new Paragraph("\n"));
+                    document.Add(new Paragraph("\n"));
+                    document.Add(new Paragraph("\n"));
+                    document.Add(new Paragraph("\n"));
+                    document.Add(new Paragraph("\n"));
+                    // Set the data of all students by branch:
+                    foreach (var item in StudentsByBranch)
+                    {
+                        PdfPTable table = new PdfPTable(5);
+                        PdfPCell cell = new PdfPCell(new Phrase(item.Key));
+                        cell.Colspan = 5;
+                        cell.HorizontalAlignment = 1;
+                        table.AddCell(cell);
+
+                        // First Row :
+                        table.AddCell("CNE");
+                        table.AddCell("Nom et prénom");
+                        table.AddCell("Date de naissance");
+                        table.AddCell("Adresse");
+                        table.AddCell("Téléphone");
+
+                        // the rest of each table:
+                        foreach (var student in item.Value)
+                        {
+                            table.AddCell(student.CNE);
+                            table.AddCell(student.Nom.ToUpper() + " " + student.Prenom);
+                            table.AddCell(student.DateNessance.ToShortDateString());
+                            table.AddCell(student.Adresse);
+                            table.AddCell(student.Telephone);
+                        }
+
+                        // add the table
+                        document.Add(table);
+                        document.Add(new Paragraph("\n"));
+                        document.Add(new Paragraph("\n"));
+                    }
+                    
+                    document.Close();
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
             }
             else if (dialogResult == DialogResult.No)
             {
