@@ -90,6 +90,7 @@ namespace GestionDesEtudiants.Forms
                 MessageBox.Show("Probléme", "title");
             }
             resetAllAttributes();
+            refreshDataGrid();
         }
 
         private void deleteStudent_Click(object sender, EventArgs e)
@@ -163,7 +164,7 @@ namespace GestionDesEtudiants.Forms
                 Student student = SerializeDeserializeObject.Deserialize(buffer) as Student;
                 dataGridView1.Rows.Clear();
                 dataGridView1.Rows.Add(student.CNE, student.Nom, student.Prenom, student.Sex, student.DateNessance, student.Adresse, student.Telephone, student.Branch.Nom, student.Id);
-
+                cneSearch.Text = "";
             }
             catch (SocketException ex)
             {
@@ -205,7 +206,7 @@ namespace GestionDesEtudiants.Forms
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
             {
-                int lignes = 0;
+                //int lignes = 0;
                 for (int i = 0; i < selectedRowCount; i++)
                 {
                     // Get the data from the datagrid view and sotre it in textboxes
@@ -225,9 +226,7 @@ namespace GestionDesEtudiants.Forms
 
 
                 }
-                refreshDataGrid();
-                MessageBox.Show(lignes + " lignes ont ete supprime", "lignes supprime");
-
+                
             }
         }
 
@@ -238,8 +237,8 @@ namespace GestionDesEtudiants.Forms
                 string sex = female.Text;
                 if (male.Checked) sex = male.Text;
                 Student updateStudent = new Student(idStudentUpdate, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text,dateTimePicker1.Value, phone.Text);
-                Request request = new Request(RequestType.UpdateStudent, cne);
-                byte[] buffer = SerializeDeserializeObject.Serialize(updateStudent);
+                Request request = new Request(RequestType.UpdateStudent, updateStudent);
+                byte[] buffer = SerializeDeserializeObject.Serialize(request);
                 MainForm.socket.Send(buffer);
                 buffer = new byte[1024];
                 int size = MainForm.socket.Receive(buffer);
@@ -256,8 +255,9 @@ namespace GestionDesEtudiants.Forms
 
                 MessageBox.Show(ex.Message, "title");
             }
-            
 
+            resetAllAttributes();
+            refreshDataGrid();
             addStudent.Visible = true;
             validate.Visible = false;
         }

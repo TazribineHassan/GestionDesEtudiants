@@ -31,7 +31,7 @@ namespace GestionDesEtudiants.Forms
         {
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cneStudent = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
@@ -40,7 +40,7 @@ namespace GestionDesEtudiants.Forms
             // 
             this.groupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox.Controls.Add(this.iconButton1);
-            this.groupBox.Controls.Add(this.textBox1);
+            this.groupBox.Controls.Add(this.cneStudent);
             this.groupBox.Controls.Add(this.label1);
             this.groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
@@ -61,23 +61,24 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 35;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(89, 103);
+            this.iconButton1.Location = new System.Drawing.Point(83, 93);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.iconButton1.Size = new System.Drawing.Size(125, 42);
+            this.iconButton1.Size = new System.Drawing.Size(129, 42);
             this.iconButton1.TabIndex = 2;
-            this.iconButton1.Text = "Afficher";
+            this.iconButton1.Text = "Télécharger";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.download_Click);
             // 
-            // textBox1
+            // cneStudent
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(142, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 23);
-            this.textBox1.TabIndex = 1;
+            this.cneStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cneStudent.Location = new System.Drawing.Point(142, 39);
+            this.cneStudent.Name = "cneStudent";
+            this.cneStudent.Size = new System.Drawing.Size(163, 23);
+            this.cneStudent.TabIndex = 1;
             // 
             // label1
             // 
@@ -109,7 +110,7 @@ namespace GestionDesEtudiants.Forms
 
         private System.Windows.Forms.GroupBox groupBox;
         private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cneStudent;
         private System.Windows.Forms.Label label1;
     }
 }
