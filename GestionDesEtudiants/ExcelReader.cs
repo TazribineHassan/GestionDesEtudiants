@@ -38,7 +38,7 @@ namespace GestionDesEtudiants
 
                             while (dr.Read())
                             {
-                                students.Add(new Student(0, new Branch(2, dr.GetString(columns.nom_filiere)), dr.GetString(columns.CNE), dr.GetString(columns.nom), dr.GetString(columns.prenom), dr.GetString(columns.sex), dr.GetString(columns.address), dr.GetDateTime(columns.date_de_naissance), dr.GetDouble(columns.telephone).ToString()));
+                                students.Add(new Student(0, new Branch(1, dr.GetString(columns.nom_filiere)), dr.GetString(columns.CNE), dr.GetString(columns.nom), dr.GetString(columns.prenom), dr.GetString(columns.sex), dr.GetString(columns.address), dr.GetDateTime(columns.date_de_naissance), dr.GetDouble(columns.telephone).ToString()));
                             }
 
                         }
