@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Server
         public ConnectivityHandler()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source = DESKTOP-UBPJAU2\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
+            con.ConnectionString = "Data Source = DESKTOP-566A95N\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
             try
             {
                 con.Open();
@@ -69,9 +70,10 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public Student getStudent(string CNE)
+        public Dictionary<bool, Student> getStudent(string CNE)
         {
-            Student result = null;
+            Dictionary<bool, Student> result = new Dictionary<bool, Student>();
+
             string requette = "SELECT [IDETUDIANT], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
 
             SqlCommand command = con.CreateCommand();
@@ -81,10 +83,26 @@ namespace Server
             {
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                var columns = new {
+                    studentId = reader.GetOrdinal("IDETUDIANT"),
+                    idFiliere = reader.GetOrdinal("IDFILIERE"),
+                    nomFiliere = reader.GetOrdinal("NOMFILIERE"),
+                    CNE = reader.GetOrdinal("CNE"),
+                    nom = reader.GetOrdinal("NOM"),
+                    prenom = reader.GetOrdinal("PRENOM"),
+                    sex = reader.GetOrdinal("SEX"),
+                    dateDeNaissance = reader.GetOrdinal("DATENAISSANCE"),
+                    adresse = reader.GetOrdinal("ADRESSE"),
+                    telephone = reader.GetOrdinal("TELEPHONE")
+                };
+
                 if (reader.Read())
                 {
-                    result = new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9));
+                    result.Add(true, new Student(reader.GetInt32(columns.studentId), new Branch(reader.GetInt32(columns.idFiliere), reader.GetString(columns.nomFiliere)), reader.GetString(columns.CNE), reader.GetString(columns.nom), reader.GetString(columns.prenom), reader.GetString(columns.sex), reader.GetString(columns.adresse), reader.GetDateTime(columns.dateDeNaissance), reader.GetString(columns.telephone)));
                 }
+                else
+                    result.Add(false, null);
+
             }
             catch (Exception e)
             {
@@ -108,10 +126,23 @@ namespace Server
             {
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                var columns = new
+                {
+                    studentId = reader.GetOrdinal("IDETUDIANT"),
+                    idFiliere = reader.GetOrdinal("IDFILIERE"),
+                    nomFiliere = reader.GetOrdinal("NOMFILIERE"),
+                    CNE = reader.GetOrdinal("CNE"),
+                    nom = reader.GetOrdinal("NOM"),
+                    prenom = reader.GetOrdinal("PRENOM"),
+                    sex = reader.GetOrdinal("SEX"),
+                    dateDeNaissance = reader.GetOrdinal("DATENAISSANCE"),
+                    adresse = reader.GetOrdinal("ADRESSE"),
+                    telephone = reader.GetOrdinal("TELEPHONE")
+                };
+
                 while (reader.Read())
                 {
-                    //                               [IDETUDIANT]               [IDFILIERE]           [NOMFILIERE]       [CNE]               [NOM]                  [PRENOM]            [SEX]                [ADRESSE]             [DATENAISSANCE]         [TELEPHONE]
-                    result.Add(new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), reader.GetString(2)), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
+                    result.Add(new Student(reader.GetInt32(columns.studentId), new Branch(reader.GetInt32(columns.idFiliere), reader.GetString(columns.nomFiliere)), reader.GetString(columns.CNE), reader.GetString(columns.nom), reader.GetString(columns.prenom), reader.GetString(columns.sex), reader.GetString(columns.adresse), reader.GetDateTime(columns.dateDeNaissance), reader.GetString(columns.telephone)));
                 }
             }
             catch (Exception e)
@@ -180,14 +211,27 @@ namespace Server
             {
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                var columns = new
+                {
+                    studentId = reader.GetOrdinal("IDETUDIANT"),
+                    idFiliere = reader.GetOrdinal("IDFILIERE"),
+                    nomFiliere = reader.GetOrdinal("NOMFILIERE"),
+                    CNE = reader.GetOrdinal("CNE"),
+                    nom = reader.GetOrdinal("NOM"),
+                    prenom = reader.GetOrdinal("PRENOM"),
+                    sex = reader.GetOrdinal("SEX"),
+                    dateDeNaissance = reader.GetOrdinal("DATENAISSANCE"),
+                    adresse = reader.GetOrdinal("ADRESSE"),
+                    telephone = reader.GetOrdinal("TELEPHONE")
+                };
+
                 while (reader.Read())
                 {
-                    string BranchName = reader.GetString(2);
+                    string BranchName = reader.GetString(columns.nomFiliere);
                     if (!result.Keys.Contains(BranchName))
                         result.Add(BranchName, new List<Student>());
 
-                    //    [NOMFILIERE]                    [IDETUDIANT]                     [IDFILIERE]    [NOMFILIERE]          [CNE]               [NOM]                  [PRENOM]            [SEX]                [ADRESSE]         [DATENAISSANCE]         [TELEPHONE]
-                    result[BranchName].Add(new Student(reader.GetInt32(0), new Branch(reader.GetInt32(1), BranchName), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(8), reader.GetDateTime(7), reader.GetString(9)));
+                    result[BranchName].Add(new Student(reader.GetInt32(columns.studentId), new Branch(reader.GetInt32(columns.idFiliere), BranchName), reader.GetString(columns.CNE), reader.GetString(columns.nom), reader.GetString(columns.prenom), reader.GetString(columns.sex), reader.GetString(columns.adresse), reader.GetDateTime(columns.dateDeNaissance), reader.GetString(columns.telephone)));
                 }
             }
             catch (Exception e)
@@ -274,10 +318,15 @@ namespace Server
             {
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                var columns = new
+                {
+                    idFiliere = reader.GetOrdinal("IDFILIERE"),
+                    nomFiliere = reader.GetOrdinal("NOMFILIERE")
+                };
 
                 while (reader.Read())
                 {
-                    result.Add(new Branch(reader.GetInt32(0), reader.GetString(1)));
+                    result.Add(new Branch(reader.GetInt32(columns.idFiliere), reader.GetString(columns.nomFiliere)));
                 }
             }
             catch (Exception e)

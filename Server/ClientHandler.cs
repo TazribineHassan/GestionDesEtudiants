@@ -31,7 +31,6 @@ namespace Server
                 {
                     buffer = new byte[1024];
                     size = socket.Receive(buffer);
-                    Console.WriteLine("size = " + size);
                     Array.Resize(ref buffer, size);
                     Request request = (Request)SerializeDeserializeObject.Deserialize(buffer);
 
@@ -43,6 +42,7 @@ namespace Server
                     {
                         case RequestType.AddStudent:
                             Student student = (Student)request.Data;
+                            Console.WriteLine("Adding student ...");
                             nbRowsAffected = connection.addStudent(student);
                             if (nbRowsAffected > 0)
                                 answer = true;
@@ -52,6 +52,7 @@ namespace Server
 
                         case RequestType.UpdateStudent:
                             Student data = (Student)request.Data;
+                            Console.WriteLine("Updating student ...");
                             nbRowsAffected = connection.updateStudent(data);
                             if (nbRowsAffected > 0)
                                 answer = true;
@@ -60,19 +61,23 @@ namespace Server
                             break;
 
                         case RequestType.GetOneStudnet:
+                            Console.WriteLine("getting one Student");
                             CNE = (string)request.Data;
                             answer = connection.getStudent(CNE);
                             break;
 
                         case RequestType.GetAllStudnets:
+                            Console.WriteLine("getting all students");
                             answer = connection.getAllStudents();
                             break;
 
                         case RequestType.GetStudentByBranch:
+                            Console.WriteLine("getting all students grouping by branch");
                             answer = connection.getStudentsByBranch();
                             break;
 
                         case RequestType.DeleteStudent:
+                            Console.WriteLine("Deleting the student");
                             CNE = (string)request.Data; 
                             nbRowsAffected = connection.deleteStudent(CNE);
                             if (nbRowsAffected > 0)
@@ -82,6 +87,7 @@ namespace Server
                             break;
 
                         case RequestType.AddBranch:
+                            Console.WriteLine("Adding a branch");
                             branch = (Branch)request.Data;
                             nbRowsAffected = connection.addBranch(branch);
                             if (nbRowsAffected > 0)
@@ -91,6 +97,7 @@ namespace Server
                             break;
 
                         case RequestType.UpdateBranch:
+                            Console.WriteLine("Updating a branch");
                             branch = (Branch)request.Data;
                             nbRowsAffected = connection.updateBranch(branch);
                             if (nbRowsAffected > 0)
@@ -100,10 +107,12 @@ namespace Server
                             break;
 
                         case RequestType.GetAllBranches:
+                            Console.WriteLine("Getting all branches");
                             answer = connection.getAllBranchs();
                             break;
 
                         case RequestType.DeleteBranch:
+                            Console.WriteLine("Deleting the branch");
                             int ID = (int)request.Data;
                             nbRowsAffected = connection.deleteBranch(ID);
                             if (nbRowsAffected > 0)
@@ -113,12 +122,13 @@ namespace Server
                             break;
 
                         case RequestType.GetStatics:
+                            Console.WriteLine("Getting the statistics");
                             answer = connection.getStatistics();
                             break;
                     }
 
                     byte[] bufferAnswer = SerializeDeserializeObject.Serialize(answer);
-                    Console.WriteLine("size sent = " + bufferAnswer.Length);
+                    
                     socket.Send(bufferAnswer);
 
                 }
