@@ -155,8 +155,10 @@ namespace GestionDesEtudiants
         private void download_Click(object sender, EventArgs e)
         {
             openForm(new Reporting());
-            DialogResult dialogResult = MessageBox.Show("Vous voulez Télécharger le Reporting", "Télécharger le Reporting", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+
+            MessageBoxYesNo messageBoxYesNo = new MessageBoxYesNo("Vous voulez Télécharger le Reporting ?", "Télécharger le Reporting");
+            messageBoxYesNo.ShowDialog();
+            if (messageBoxYesNo.Answer)
             {
                 try
                 {
@@ -226,16 +228,14 @@ namespace GestionDesEtudiants
                     }
                     
                     document.Close();
+                    new MessageBx("Le téléchargement est terminé", "Le téléchargement").Show();
                 }
-                catch (SocketException ex)
+                catch (SocketException )
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
                 }
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
+
         }
     }
 

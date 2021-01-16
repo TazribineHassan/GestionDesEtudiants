@@ -47,9 +47,9 @@ namespace GestionDesEtudiants
                     dataGridView1.Rows.Add(filiere.Id, filiere.Nom);
                 }
             }
-            catch (SocketException ex)
+            catch (SocketException )
             {
-                Console.WriteLine(ex.Message);
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
             }
             finally
             {
@@ -65,53 +65,86 @@ namespace GestionDesEtudiants
 
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
+        private void addBranch_Click(object sender, EventArgs e)
         {
-            Request request = new Request(RequestType.AddBranch, new Branch(0, BranchName.Text));
-            byte[] buffer = SerializeDeserializeObject.Serialize(request);
-            MainForm.socket.Send(buffer);
-            buffer = new byte[1024];
-            int size = MainForm.socket.Receive(buffer);
-            Array.Resize(ref buffer, size);
-            bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-            if (answer)
+            if (BranchName.Text != "")
             {
-                MessageBox.Show("La Filière a été ajouter", "succ");
-            }
-            else
-            {
-                MessageBox.Show("Probléme", "succ");
-            }
-            BranchName.Text = "";
-            actualiserLeTableau();
-        }
-
-        private void iconButton3_Click(object sender, EventArgs e)
-        {
-            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowCount > 0)
-            {
-                int lignes = 0;
-                for (int i = 0; i < selectedRowCount; i++)
+                try
                 {
-                    int id = Int32.Parse(dataGridView1.SelectedRows[i].Cells["Id_Filière"].Value.ToString());
-                    Request request = new Request(RequestType.DeleteBranch, id);
+                    Request request = new Request(RequestType.AddBranch, new Branch(0, BranchName.Text));
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
                     MainForm.socket.Send(buffer);
                     buffer = new byte[1024];
                     int size = MainForm.socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
                     bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                    if (!answer)
+                    if (answer)
                     {
-                        MessageBox.Show("Probléme", "succ");
+                        new MessageBx("L'ajout a réussi", "L'ajout").Show();
+                        BranchName.Text = "";
+                        actualiserLeTableau();
                     }
-                    actualiserLeTableau();
+                    else
+                    {
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                    }
+
+                }
+                catch (Exception)
+                {
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+
+                }
+            }
+            else
+            {
+                new MessageBx("Veuillez remplir le champ", "Attention").Show();
+                 
+            }
+
+
+        }
+
+        private void deleteBranch_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+                
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    int id = Int32.Parse(dataGridView1.SelectedRows[i].Cells["Id_Filière"].Value.ToString());
+                    try
+                    {
+                        Request request = new Request(RequestType.DeleteBranch, id);
+                        byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                        MainForm.socket.Send(buffer);
+                        buffer = new byte[1024];
+                        int size = MainForm.socket.Receive(buffer);
+                        Array.Resize(ref buffer, size);
+                        bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                        if (answer)
+                        {
+                            actualiserLeTableau();
+                            new MessageBx("La suppression a réussi", "Suppression").Show();
+                        }
+                        else
+                        {
+                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                    }
+                   
                 }
 
-                MessageBox.Show(lignes + " lignes ont ete supprime", "lignes supprime");
-
             }
+            else
+            {
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
+            }           
         }
 
         private void BranchName_TextChanged(object sender, EventArgs e)
@@ -119,7 +152,7 @@ namespace GestionDesEtudiants
 
         }
 
-        private void iconButton2_Click(object sender, EventArgs e)
+        private void updateBranch_Click(object sender, EventArgs e)
         {
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
@@ -129,25 +162,40 @@ namespace GestionDesEtudiants
                 {
                     int id = Int32.Parse(dataGridView1.SelectedRows[i].Cells["Id_Filière"].Value.ToString());
                     string branchNameTable = dataGridView1.SelectedRows[i].Cells["Nom_Filière"].Value.ToString();
-                    MessageUpdate msg = new MessageUpdate( );
-                    msg.UpdateNamebranch.Text = branchNameTable;
-                    //Console.WriteLine(msg.UpdateNamebranch.Text);
-                    msg.ShowDialog();
-                    Request request = new Request(RequestType.UpdateBranch, new Branch(id, msg.UpdateNamebranch.Text));
-                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
-                    buffer = new byte[1024];
-                    int size = MainForm.socket.Receive(buffer);
-                    Array.Resize(ref buffer, size);
-                    bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                    if (!answer)
+                    try
                     {
-                        MessageBox.Show("Probléme", "succ");
+                        MessageUpdate msg = new MessageUpdate();
+                        msg.UpdateNamebranch.Text = branchNameTable;
+                        //Console.WriteLine(msg.UpdateNamebranch.Text);
+                        msg.ShowDialog();
+                        Request request = new Request(RequestType.UpdateBranch, new Branch(id, msg.UpdateNamebranch.Text));
+                        byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                        MainForm.socket.Send(buffer);
+                        buffer = new byte[1024];
+                        int size = MainForm.socket.Receive(buffer);
+                        Array.Resize(ref buffer, size);
+                        bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                        if (answer)
+                        {
+                            new MessageBx("La modification a réussi", "Modification").Show();
+                            actualiserLeTableau();
+                        }
+                        else
+                        {
+                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                        }
                     }
-                }
+                    catch (Exception)
+                    { 
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                    }
 
-                //MessageBox.Show(lignes + " lignes ont ete supprime", "lignes supprime");
-                actualiserLeTableau();
+                }
+    
+            }
+            else
+            {
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
             }
            
         }

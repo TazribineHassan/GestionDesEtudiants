@@ -51,5 +51,10 @@ namespace GestionDesEtudiants.Forms
         {
             this.Dispose();
         }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
