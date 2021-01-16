@@ -49,7 +49,7 @@ namespace GestionDesEtudiants.Forms
             }
             catch (SocketException ex)
             {
-                Console.WriteLine(ex.Message);
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show(); Console.WriteLine(ex.Message);
             }
 
         }
@@ -78,19 +78,31 @@ namespace GestionDesEtudiants.Forms
         {
             string sex = female.Text;
             if (male.Checked) sex = male.Text;
-            Request request = new Request(RequestType.AddStudent, new Student(0, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text, dateTimePicker1.Value, phone.Text));
-            byte[] buffer = SerializeDeserializeObject.Serialize(request);
-            MainForm.socket.Send(buffer);
-            buffer = new byte[1024];
-            int size = MainForm.socket.Receive(buffer);
-            Array.Resize(ref buffer, size);
-            bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-            if (!answer)
+            if (!checkEmptyAttributes())
             {
-                MessageBox.Show("Probléme", "title");
+                Request request = new Request(RequestType.AddStudent, new Student(0, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text, dateTimePicker1.Value, phone.Text));
+                byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                MainForm.socket.Send(buffer);
+                buffer = new byte[1024];
+                int size = MainForm.socket.Receive(buffer);
+                Array.Resize(ref buffer, size);
+                bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                if (answer)
+                {
+                    new MessageBx("L'ajout a réussi", "L'ajout").Show();
+                }
+                else
+                {
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                }
+                resetAllAttributes();
+                refreshDataGrid();
             }
-            resetAllAttributes();
-            refreshDataGrid();
+            else
+            {
+                new MessageBx("Veuillez remplir tous les champs", "Attention").Show();
+            } 
+
         }
 
         private void deleteStudent_Click(object sender, EventArgs e)
@@ -98,28 +110,40 @@ namespace GestionDesEtudiants.Forms
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
             {
-                int lignes = 0;
                 for (int i = 0; i < selectedRowCount; i++)
                 {
-                   // get the data
-
-                    string cne = dataGridView1.SelectedRows[i].Cells["CNE"].Value.ToString();
-                    Request request = new Request(RequestType.DeleteStudent, cne);
-                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
-                    buffer = new byte[1024];
-                    int size =  MainForm.socket.Receive(buffer);
-                    Array.Resize(ref buffer, size);
-                    bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                    if (!answer)
+                    // get the data
+                    try
                     {
-                        MessageBox.Show("Probléme", "title");
+                        string cne = dataGridView1.SelectedRows[i].Cells["CNE"].Value.ToString();
+                        Request request = new Request(RequestType.DeleteStudent, cne);
+                        byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                        MainForm.socket.Send(buffer);
+                        buffer = new byte[1024];
+                        int size = MainForm.socket.Receive(buffer);
+                        Array.Resize(ref buffer, size);
+                        bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                        if (answer)
+                        {
+                            new MessageBx("La suppression a réussi", "Suppression").Show();
+                            refreshDataGrid();
+                        }
+                        else
+                        {
+                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
                     }
 
                 }
-                refreshDataGrid();
-                MessageBox.Show(lignes + " lignes ont ete supprime", "lignes supprime");
-
+                
+            }
+            else
+            {
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
             }
         }
 
@@ -153,23 +177,31 @@ namespace GestionDesEtudiants.Forms
 
         private void getStudentByCNE(object sender, EventArgs e)
         {
-            try
+            if(cneSearch.Text != "")
             {
-                Request request = new Request(RequestType.GetOneStudnet, cneSearch.Text);
-                byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
-                buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
-                Array.Resize(ref buffer, size);
-                Student student = SerializeDeserializeObject.Deserialize(buffer) as Student;
-                dataGridView1.Rows.Clear();
-                dataGridView1.Rows.Add(student.CNE, student.Nom, student.Prenom, student.Sex, student.DateNessance, student.Adresse, student.Telephone, student.Branch.Nom, student.Id);
-                cneSearch.Text = "";
+                try
+                {
+                    Request request = new Request(RequestType.GetOneStudnet, cneSearch.Text);
+                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                    MainForm.socket.Send(buffer);
+                    buffer = new byte[1024];
+                    int size = MainForm.socket.Receive(buffer);
+                    Array.Resize(ref buffer, size);
+                    Student student = SerializeDeserializeObject.Deserialize(buffer) as Student;
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Rows.Add(student.CNE, student.Nom, student.Prenom, student.Sex, student.DateNessance, student.Adresse, student.Telephone, student.Branch.Nom, student.Id);
+                    cneSearch.Text = "";
+                }
+                catch (SocketException ex)
+                {
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                }
             }
-            catch (SocketException ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                new MessageBx("Veuillez remplir le champ", "Attention").Show();
             }
+
 
 
         }
@@ -197,7 +229,7 @@ namespace GestionDesEtudiants.Forms
             }
             catch (SocketException)
             {
-                MessageBox.Show("Probléme", "Error");
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
             }
         }
 
@@ -209,7 +241,7 @@ namespace GestionDesEtudiants.Forms
                 //int lignes = 0;
                 for (int i = 0; i < selectedRowCount; i++)
                 {
-                    // Get the data from the datagrid view and sotre it in textboxes
+                    // Get the data from the datagrid view and sotre it in to textboxes
 
                     idStudentUpdate = int.Parse(dataGridView1.SelectedRows[i].Cells["id_student"].Value.ToString());
                     cneStudent.Text = dataGridView1.SelectedRows[i].Cells["cne"].Value.ToString();
@@ -228,38 +260,68 @@ namespace GestionDesEtudiants.Forms
                 }
                 
             }
+            else
+            {
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
+            }
         }
 
         private void validate_Click(object sender, EventArgs e)
         {
-            try
+            if (!checkEmptyAttributes())
             {
-                string sex = female.Text;
-                if (male.Checked) sex = male.Text;
-                Student updateStudent = new Student(idStudentUpdate, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text,dateTimePicker1.Value, phone.Text);
-                Request request = new Request(RequestType.UpdateStudent, updateStudent);
-                byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
-                buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
-                Array.Resize(ref buffer, size);
-                bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                if (!answer)
+                try
                 {
-                    MessageBox.Show("Probléme", "title");
-
+                    string sex = female.Text;
+                    if (male.Checked) sex = male.Text;
+                    Student updateStudent = new Student(idStudentUpdate, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text, dateTimePicker1.Value, phone.Text);
+                    Request request = new Request(RequestType.UpdateStudent, updateStudent);
+                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                    MainForm.socket.Send(buffer);
+                    buffer = new byte[1024];
+                    int size = MainForm.socket.Receive(buffer);
+                    Array.Resize(ref buffer, size);
+                    bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                    if (answer)
+                    {
+                        new MessageBx("La modification a réussi", "Modification").Show();
+                        refreshDataGrid();
+                    }
+                    else
+                    {
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                    }
                 }
+                catch (SocketException ex)
+                {
+
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                }
+
+                resetAllAttributes();
+                addStudent.Visible = true;
+                validate.Visible = false;
             }
-            catch (SocketException ex)
+            else
             {
-
-                MessageBox.Show(ex.Message, "title");
+                new MessageBx("Veuillez remplir tous les champs", "Attention").Show();
             }
 
-            resetAllAttributes();
-            refreshDataGrid();
-            addStudent.Visible = true;
-            validate.Visible = false;
+        }
+
+        private bool checkEmptyAttributes()
+        {
+            if (branchStudent.Text == "" || cneStudent.Text == "" || studentName.Text == ""
+                || studenLastName.Text == "" || address.Text == "" || phone.Text == "" || !checkredioBox()) return true;
+            else return false;
+                           
+        }
+
+        private bool checkredioBox()
+        {
+            if (male.Checked == false && female.Checked == true) return true;
+            else if (male.Checked == true && female.Checked == false) return true;
+            else return false;
         }
     }
 }

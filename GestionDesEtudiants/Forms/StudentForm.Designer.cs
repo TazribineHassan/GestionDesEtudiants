@@ -45,6 +45,7 @@ namespace GestionDesEtudiants.Forms
             this.adresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tele = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filiere = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_student = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iconButton5 = new FontAwesome.Sharp.IconButton();
             this.iconButton4 = new FontAwesome.Sharp.IconButton();
             this.iconButton8 = new FontAwesome.Sharp.IconButton();
@@ -72,7 +73,6 @@ namespace GestionDesEtudiants.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.cneSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.id_student = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -209,6 +209,12 @@ namespace GestionDesEtudiants.Forms
             this.filiere.HeaderText = "Filière";
             this.filiere.Name = "filiere";
             this.filiere.ReadOnly = true;
+            // 
+            // id_student
+            // 
+            this.id_student.HeaderText = "Id Etudaint";
+            this.id_student.Name = "id_student";
+            this.id_student.Visible = false;
             // 
             // iconButton5
             // 
@@ -578,12 +584,6 @@ namespace GestionDesEtudiants.Forms
             this.label1.TabIndex = 1;
             this.label1.Text = "Chercher un etudiant: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // id_student
-            // 
-            this.id_student.HeaderText = "Id Etudaint";
-            this.id_student.Name = "id_student";
-            this.id_student.Visible = false;
             // 
             // StudentForm
             // 

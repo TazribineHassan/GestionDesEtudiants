@@ -42,7 +42,7 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Dispose();
         }
     }
 }

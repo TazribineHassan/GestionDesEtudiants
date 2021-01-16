@@ -46,7 +46,7 @@ namespace GestionDesEtudiants.Forms
             this.groupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
             this.groupBox.Location = new System.Drawing.Point(201, 118);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(311, 151);
+            this.groupBox.Size = new System.Drawing.Size(341, 176);
             this.groupBox.TabIndex = 2;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Reporting d’un étudiant";
@@ -61,7 +61,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 35;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(83, 93);
+            this.iconButton1.Location = new System.Drawing.Point(95, 109);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.iconButton1.Size = new System.Drawing.Size(129, 42);
@@ -75,7 +75,7 @@ namespace GestionDesEtudiants.Forms
             // cneStudent
             // 
             this.cneStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cneStudent.Location = new System.Drawing.Point(142, 39);
+            this.cneStudent.Location = new System.Drawing.Point(161, 53);
             this.cneStudent.Name = "cneStudent";
             this.cneStudent.Size = new System.Drawing.Size(163, 23);
             this.cneStudent.TabIndex = 1;
@@ -85,7 +85,7 @@ namespace GestionDesEtudiants.Forms
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(7, 42);
+            this.label1.Location = new System.Drawing.Point(17, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 17);
             this.label1.TabIndex = 0;
