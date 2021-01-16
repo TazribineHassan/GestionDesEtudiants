@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -69,9 +70,10 @@ namespace Server
             return nbRowsAffected;
         }
 
-        public Student getStudent(string CNE)
+        public Dictionary<bool, Student> getStudent(string CNE)
         {
-            Student result = null;
+            Dictionary<bool, Student> result = new Dictionary<bool, Student>();
+
             string requette = "SELECT [IDETUDIANT], [FILIERE].[IDFILIERE], [NOMFILIERE], [CNE], [NOM], [PRENOM], [SEX], [DATENAISSANCE], [ADRESSE], [TELEPHONE] FROM [STUDENT], [FILIERE] WHERE [STUDENT].IDFILIERE = [FILIERE].IDFILIERE AND CONVERT(NVARCHAR(MAX), [CNE]) = @CNE";
 
             SqlCommand command = con.CreateCommand();
@@ -96,8 +98,11 @@ namespace Server
 
                 if (reader.Read())
                 {
-                    result = new Student(reader.GetInt32(columns.studentId), new Branch(reader.GetInt32(columns.idFiliere), reader.GetString(columns.nomFiliere)), reader.GetString(columns.CNE), reader.GetString(columns.nom), reader.GetString(columns.prenom), reader.GetString(columns.sex), reader.GetString(columns.adresse), reader.GetDateTime(columns.dateDeNaissance), reader.GetString(columns.telephone));
+                    result.Add(true, new Student(reader.GetInt32(columns.studentId), new Branch(reader.GetInt32(columns.idFiliere), reader.GetString(columns.nomFiliere)), reader.GetString(columns.CNE), reader.GetString(columns.nom), reader.GetString(columns.prenom), reader.GetString(columns.sex), reader.GetString(columns.adresse), reader.GetDateTime(columns.dateDeNaissance), reader.GetString(columns.telephone)));
                 }
+                else
+                    result.Add(false, null);
+
             }
             catch (Exception e)
             {

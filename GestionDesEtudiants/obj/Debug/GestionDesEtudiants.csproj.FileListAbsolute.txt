@@ -47,3 +47,5 @@ C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\it
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBoxYesNo.resources
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBx.resources
