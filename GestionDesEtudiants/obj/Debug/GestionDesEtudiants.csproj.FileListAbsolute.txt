@@ -44,3 +44,6 @@ C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\Ge
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml

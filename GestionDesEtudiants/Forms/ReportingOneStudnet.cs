@@ -37,15 +37,15 @@ namespace GestionDesEtudiants.Forms
 
                 //create the pdf file
                 Document document = new Document();
-                PdfWriter.GetInstance(document, new FileStream(@"C:\Users\admin\Desktop\" + student.CNE + "_" + student.Nom + ".pdf", FileMode.Create));
+                PdfWriter.GetInstance(document, new FileStream(@"C:\Users\Matrouh\Desktop\" + student.CNE + "_" + student.Nom + ".pdf", FileMode.Create));
                 document.Open();
                 // ENSAS Logo
-                iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\logo.png");
+                iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@"D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\Resources\logo.png");
                 ensasLogo.ScalePercent(50);
                 ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
                 document.Add(ensasLogo);
                 // UCA Logo
-                iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\ucaLogo.jpg");
+                iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@"D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\Resources\ucaLogo.jpg");
                 ucaLogo.ScalePercent(50);
                 ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
                 document.Add(ucaLogo);
