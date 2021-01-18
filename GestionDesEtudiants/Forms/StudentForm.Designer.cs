@@ -1,6 +1,9 @@
 ﻿
+using ClassLibrary;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace GestionDesEtudiants.Forms
@@ -609,7 +612,11 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton5_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
+            Dictionary<string, int> branches = new Dictionary<string, int>();
+            foreach (Branch item in branchStudent.Items)
+            {
+                branches.Add(item.Nom, item.Id);
+            }
             var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -626,9 +633,63 @@ namespace GestionDesEtudiants.Forms
 
                 }
             }
-            ExcelViewer excelViewer = new ExcelViewer(ExcelReader.ReadFromExcel(filePath));
-            excelViewer.ShowDialog();
-            refreshDataGrid();
+
+            //if the user selected a file
+            if(!filePath.Equals(""))
+            {
+                List<Student> students = null;
+                try
+                {
+                    students = ExcelReader.ReadFromExcel(filePath);
+                    ExcelViewer excelViewer = new ExcelViewer(students);
+                    excelViewer.ShowDialog();
+                    //if the user confirmed his uploading
+                    if (excelViewer.answer)
+                    {
+                        foreach (var student in students)
+                        {
+
+                            Request request = new Request(RequestType.AddStudent, student);
+                            byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                            MainForm.socket.Send(buffer);
+                            buffer = new byte[1024];
+                            int size = MainForm.socket.Receive(buffer);
+                            Array.Resize(ref buffer, size);
+                            bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                            if (!answer)
+                            {
+                                MessageBx warning = new MessageBx("Probléme", "Probléme");
+                                warning.ShowDialog();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Student " + student.Nom + " " + student.Prenom + " addedsuccesfully");
+                            }
+
+                        }
+                        if (ExcelReader.errorMessages.Count > 0)
+                        {
+                            foreach (var msg in ExcelReader.errorMessages)
+                            {
+                                MessageBx warning = new MessageBx(msg, "Probléme");
+                                warning.ShowDialog();
+                            }
+                        }
+                    }
+                    
+                    refreshDataGrid();
+
+                }
+                catch(SocketException)
+                {
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                }
+                catch(Exception)
+                {
+                    new MessageBx("Nous avons rencontré un problème dans la lecture du fichier!\nVeulliez correcter votre fichier et réessayer plus tard.", "Problème du fichier Excel").Show();
+                }
+            }
+            
         }
 
         #endregion

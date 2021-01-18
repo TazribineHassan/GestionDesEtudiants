@@ -14,6 +14,7 @@ namespace GestionDesEtudiants.Forms
     public partial class ExcelViewer : Form
     {
         private List<Student> students;
+        public bool answer { get; set; }
         public ExcelViewer(List<Student> students)
         {
             InitializeComponent();
@@ -26,34 +27,19 @@ namespace GestionDesEtudiants.Forms
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-
-            foreach (var student in students)
-            {
-                Console.WriteLine("uploading " + student.Nom);
-                Request request = new Request(RequestType.AddStudent, student);
-                byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
-                buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
-                Array.Resize(ref buffer, size);
-                bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                if (!answer)
-                {
-                    MessageBox.Show("Probléme", "title");
-                    break;
-                }else
-                    Console.WriteLine("student added!");
-            }
+            answer = true;
             this.Dispose();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            answer = false;
             this.Dispose();
         }
 
         private void iconButton5_Click(object sender, EventArgs e)
         {
+            answer = false;
             this.Dispose();
         }
     }
