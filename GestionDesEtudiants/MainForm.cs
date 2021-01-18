@@ -179,12 +179,12 @@ namespace GestionDesEtudiants
                         PdfWriter.GetInstance(document, new FileStream(folder.SelectedPath + "\\Reporting.pdf", FileMode.Create));
                         document.Open();
                         // ENSAS Logo
-                        iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\logo.png");
+                        iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@".\Resources\logo.png");
                         ensasLogo.ScalePercent(50);
                         ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
                         document.Add(ensasLogo);
                         // UCA Logo
-                        iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\ucaLogo.jpg");
+                        iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@".\Resources\ucaLogo.jpg");
                         ucaLogo.ScalePercent(50);
                         ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
                         document.Add(ucaLogo);

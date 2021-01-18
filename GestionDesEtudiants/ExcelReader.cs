@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
@@ -10,9 +11,24 @@ namespace GestionDesEtudiants
 {
     public class ExcelReader
     {
+        public static List<string> errorMessages; 
         public static List<Student> ReadFromExcel(String filePath)
         {
+            errorMessages = new List<string>();
             List<Student> students = new List<Student>();
+
+            //getting all existed branches as a Dictionary of <name, id>
+            Dictionary<string, int> branches = new Dictionary<string, int>();
+            Request request = new Request(RequestType.GetAllBranches, null);
+            byte[] buffer = SerializeDeserializeObject.Serialize(request);
+            MainForm.socket.Send(buffer);
+            buffer = new byte[1024];
+            int size = MainForm.socket.Receive(buffer);
+            Array.Resize(ref buffer, size);
+
+            foreach(var item in (List<Branch>)SerializeDeserializeObject.Deserialize(buffer)){
+                branches.Add(item.Nom, item.Id);
+            }
 
             string con = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";" 
                        + @"Extended Properties='Excel 8.0;HDR=Yes;'";
@@ -36,12 +52,29 @@ namespace GestionDesEtudiants
                                 nom_filiere = dr.GetOrdinal("Filiere")
                             };
 
+                        //checking if the branch existed
+
+                        
+
+
                             while (dr.Read())
                             {
-                                students.Add(new Student(0, new Branch(1, dr.GetString(columns.nom_filiere)), dr.GetString(columns.CNE), dr.GetString(columns.nom), dr.GetString(columns.prenom), dr.GetString(columns.sex), dr.GetString(columns.address), dr.GetDateTime(columns.date_de_naissance), dr.GetDouble(columns.telephone).ToString()));
+                                string branchName = dr.GetString(columns.nom_filiere);
+                            if (branches.ContainsKey(branchName))
+                                students.Add(new Student(0, new Branch(branches[branchName], branchName), dr.GetString(columns.CNE), dr.GetString(columns.nom), dr.GetString(columns.prenom), dr.GetString(columns.sex), dr.GetString(columns.address), dr.GetDateTime(columns.date_de_naissance), dr.GetDouble(columns.telephone).ToString()));
+                            else
+                                errorMessages.Add("Impossible d'ajouter l'etudiant " + dr.GetString(columns.nom) + " " + dr.GetString(columns.prenom) //message
+                                                            + "\nCause: filiere " + dr.GetString(columns.nom_filiere) + " n'existe pas");
                             }
 
                         }
+                }
+                catch (SocketException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                    connection.Close();
+                    throw ex;
                 }
                 catch (Exception e)
                 {
