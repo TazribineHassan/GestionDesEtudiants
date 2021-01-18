@@ -184,15 +184,27 @@ namespace GestionDesEtudiants.Forms
                     Request request = new Request(RequestType.GetOneStudnet, cneSearch.Text);
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
                     MainForm.socket.Send(buffer);
-                    buffer = new byte[1024];
+                    buffer = new byte[1024 * 1024];
                     int size = MainForm.socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
-                    Student student = SerializeDeserializeObject.Deserialize(buffer) as Student;
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Rows.Add(student.CNE, student.Nom, student.Prenom, student.Sex, student.DateNessance, student.Adresse, student.Telephone, student.Branch.Nom, student.Id);
-                    cneSearch.Text = "";
+                    Dictionary<bool, Student> answer = SerializeDeserializeObject.Deserialize(buffer) as Dictionary<bool, Student>;
+
+                    foreach (var item in answer)
+                    {
+                        if (item.Key)
+                        {
+                            dataGridView1.Rows.Clear();
+                            dataGridView1.Rows.Add(item.Value.CNE, item.Value.Nom, item.Value.Prenom, item.Value.Sex, item.Value.DateNessance, item.Value.Adresse, item.Value.Telephone, item.Value.Branch.Nom, item.Value.Id);
+                            cneSearch.Text = "";
+                        }
+                        else
+                        {
+                            new MessageBx("Veuillez vérifier le CNE", "Attention").Show();
+                        }
+                    }
+
                 }
-                catch (SocketException ex)
+                catch (SocketException )
                 {
                     new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
                 }
@@ -292,7 +304,7 @@ namespace GestionDesEtudiants.Forms
                         new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
                     }
                 }
-                catch (SocketException ex)
+                catch (SocketException )
                 {
 
                     new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();

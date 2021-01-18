@@ -1,51 +1,25 @@
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe.config
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.pdb
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\ClassLibrary.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.BranchForm.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Graphic.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBoxYesNo.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBx.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageUpdate.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Reporting.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ReportingOneStudnet.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.StudentForm.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.MainForm.resources
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Properties.Resources.resources
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.GenerateResource.cache
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CopyComplete
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.exe
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.pdb
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\FontAwesome.Sharp.dll
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CopyComplete
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.MainForm.resources
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Graphic.resources
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Reporting.resources
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ReportingOneStudnet.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe.config
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.exe
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\GestionDesEtudiants.pdb
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\FontAwesome.Sharp.dll
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csprojAssemblyReference.cache
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Graphic.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.Reporting.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ReportingOneStudnet.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.MainForm.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Properties.Resources.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.GenerateResource.cache
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CoreCompileInputs.cache
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csproj.CopyComplete
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.exe
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.pdb
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\ClassLibrary.dll
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.BranchForm.resources
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.StudentForm.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\ClassLibrary.dll
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.BranchForm.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.StudentForm.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageUpdate.resources
-<<<<<<< HEAD
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageUpdate.resources
-=======
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
->>>>>>> 79135b960bf321e5702110bf7b7c8b05e68ac8ce
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.ExcelViewer.resources
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
-C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\BouncyCastle.Crypto.dll
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.dll
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\bin\Debug\itextsharp.xml
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBoxYesNo.resources
-D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Forms.MessageBx.resources
+C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.csprojAssemblyReference.cache
