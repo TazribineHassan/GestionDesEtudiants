@@ -43,88 +43,92 @@ namespace GestionDesEtudiants.Forms
                     if (answer.Keys.First())
                     {
                         // Get the folder path
-/*                        string path = string.Empty;
+                        string path = string.Empty;
                         FolderBrowserDialog folder = new FolderBrowserDialog();
-                        if (folder.ShowDialog() == DialogResult.OK) path = folder.SelectedPath;*/
+                        if (folder.ShowDialog() == DialogResult.OK)
+                        {
 
-                        Document document = new Document();
-                        PdfWriter.GetInstance(document, new FileStream(@"C:\Users\admin\Desktop" + answer.Values.First().CNE + ".pdf", FileMode.Create));
-                        document.Open();
-                        // ENSAS Logo
-                        iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\logo.png");
-                        ensasLogo.ScalePercent(50);
-                        ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
-                        document.Add(ensasLogo);
-                        // UCA Logo
-                        iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@"C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\Resources\ucaLogo.jpg");
-                        ucaLogo.ScalePercent(50);
-                        ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
-                        document.Add(ucaLogo);
-                        // Title 
-                        Paragraph paragraph = new Paragraph(new Phrase("Ecole Nationale des Sciences Appliquées de", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLUE)));
-                        paragraph.IndentationLeft = 95f;
-                        document.Add(paragraph);
-                        Paragraph paragraph_2 = new Paragraph(new Phrase("SAFI", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLUE)));
-                        paragraph_2.IndentationLeft = 250f;
-                        document.Add(paragraph_2);
-                        //New Lines  
-                        document.Add(new Paragraph("\n\n\n\n\n\n\n\n"));
+                            path = folder.SelectedPath;
 
-                        // added name of the student
-                        Paragraph title = new Paragraph(new Phrase("Information de L'Etudiant(e): " + answer.Values.First().Nom + " " + answer.Values.First().Prenom, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLACK)));
-                        title.IndentationLeft = 80f;
-                        document.Add(title);
+                            Document document = new Document();
+                            PdfWriter.GetInstance(document, new FileStream(path + "\\" + answer.Values.First().CNE + ".pdf", FileMode.Create));
+                            document.Open();
+                            // ENSAS Logo
+                            iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(".\\Resources\\logo.png");
+                            ensasLogo.ScalePercent(50);
+                            ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
+                            document.Add(ensasLogo);
+                            // UCA Logo
+                            iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(".\\Resources\\ucaLogo.jpg");
+                            ucaLogo.ScalePercent(50);
+                            ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
+                            document.Add(ucaLogo);
+                            // Title 
+                            Paragraph paragraph = new Paragraph(new Phrase("Ecole Nationale des Sciences Appliquées de", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLUE)));
+                            paragraph.IndentationLeft = 95f;
+                            document.Add(paragraph);
+                            Paragraph paragraph_2 = new Paragraph(new Phrase("SAFI", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLUE)));
+                            paragraph_2.IndentationLeft = 250f;
+                            document.Add(paragraph_2);
+                            //New Lines  
+                            document.Add(new Paragraph("\n\n\n\n\n\n\n\n"));
 
-                        //New Lines  
-                        document.Add(new Paragraph("\n\n\n\n\n"));
+                            // added name of the student
+                            Paragraph title = new Paragraph(new Phrase("Information de L'Etudiant(e): " + answer.Values.First().Nom + " " + answer.Values.First().Prenom, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLDITALIC, iTextSharp.text.BaseColor.BLACK)));
+                            title.IndentationLeft = 80f;
+                            document.Add(title);
 
-                        //  set cne of the setudent
-                        Phrase cne = new Phrase("CNE:          ", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK));
-                        document.Add(cne);
-                        document.Add(new Phrase(answer.Values.First().CNE + "\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
-                        //  set branch name of the setudent
-                        Phrase branch = new Phrase("Nom filière:  ", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK));
-                        document.Add(branch);
-                        document.Add(new Phrase(answer.Values.First().Branch.ToString() + "\n\n\n\n\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
+                            //New Lines  
+                            document.Add(new Paragraph("\n\n\n\n\n"));
 
-                        // set the other information:
-                        PdfPTable table = new PdfPTable(4);
-                        table.TotalWidth = 520f;
-                        table.LockedWidth = true;
-                        float[] widths = new float[] { 150f, 150f, 110f, 110f };
-                        table.SetWidths(widths);
+                            //  set cne of the setudent
+                            Phrase cne = new Phrase("CNE:          ", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK));
+                            document.Add(cne);
+                            document.Add(new Phrase(answer.Values.First().CNE + "\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
+                            //  set branch name of the setudent
+                            Phrase branch = new Phrase("Nom filière:  ", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK));
+                            document.Add(branch);
+                            document.Add(new Phrase(answer.Values.First().Branch.ToString() + "\n\n\n\n\n\n", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 13f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
 
-                        // First  row in the table
-                        // First Row :
-                        PdfPCell cell1 = new PdfPCell(new Phrase("Date de Naissance", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
-                        MakePaddingAndColor(cell1);
-                        table.AddCell(cell1);
-                        PdfPCell cell2 = new PdfPCell(new Phrase("Adresse", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
-                        MakePaddingAndColor(cell2);
-                        table.AddCell(cell2);
-                        PdfPCell cell3 = new PdfPCell(new Phrase("Téléphone", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
-                        MakePaddingAndColor(cell3);
-                        table.AddCell(cell3);
-                        PdfPCell cell4 = new PdfPCell(new Phrase("Sexe", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
-                        MakePaddingAndColor(cell4);
-                        table.AddCell(cell4);
+                            // set the other information:
+                            PdfPTable table = new PdfPTable(4);
+                            table.TotalWidth = 520f;
+                            table.LockedWidth = true;
+                            float[] widths = new float[] { 150f, 150f, 110f, 110f };
+                            table.SetWidths(widths);
+
+                            // First  row in the table
+                            // First Row :
+                            PdfPCell cell1 = new PdfPCell(new Phrase("Date de Naissance", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
+                            MakePaddingAndColor(cell1);
+                            table.AddCell(cell1);
+                            PdfPCell cell2 = new PdfPCell(new Phrase("Adresse", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
+                            MakePaddingAndColor(cell2);
+                            table.AddCell(cell2);
+                            PdfPCell cell3 = new PdfPCell(new Phrase("Téléphone", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
+                            MakePaddingAndColor(cell3);
+                            table.AddCell(cell3);
+                            PdfPCell cell4 = new PdfPCell(new Phrase("Sexe", new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE)));
+                            MakePaddingAndColor(cell4);
+                            table.AddCell(cell4);
 
 
-                        // Second  row in the table
+                            // Second  row in the table
 
-                        table.AddCell(MakePadding(new PdfPCell( new Phrase(answer.Values.First().DateNessance.ToShortDateString()))));
-                        table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Adresse))));
-                        table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Telephone))));
-                        table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Sex))));
-                        document.Add(table);
+                            table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().DateNessance.ToShortDateString()))));
+                            table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Adresse))));
+                            table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Telephone))));
+                            table.AddCell(MakePadding(new PdfPCell(new Phrase(answer.Values.First().Sex))));
+                            document.Add(table);
 
-                        document.Add(new Paragraph("\n\n\n\n\n\n\n\n\n\n"));
-                        document.Add(new Paragraph("Date du jour: " + DateTime.Today.ToShortDateString() +
-                            "                                                                                 " + "Signature"));
-                        document.Close();
+                            document.Add(new Paragraph("\n\n\n\n\n\n\n\n\n\n"));
+                            document.Add(new Paragraph("Date du jour: " + DateTime.Today.ToShortDateString() +
+                                "                                                                                 " + "Signature"));
+                            document.Close();
 
-                        new MessageBx("Le téléchargement est terminé", "Le téléchargement").Show();
-                        cneStudent.Text = "";
+                            new MessageBx("Le téléchargement est terminé", "Le téléchargement").Show();
+                            cneStudent.Text = "";
+                        }
                     }
                     else 
                     {
