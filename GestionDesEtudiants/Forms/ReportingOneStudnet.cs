@@ -17,9 +17,11 @@ namespace GestionDesEtudiants.Forms
 {
     public partial class ReportingOneStudnet : Form
     {
-        public ReportingOneStudnet()
+        private Socket socket;
+        public ReportingOneStudnet(Socket sock)
         {
             InitializeComponent();
+            socket = sock;
         }
 
         private void download_Click(object sender, EventArgs e)
@@ -32,9 +34,9 @@ namespace GestionDesEtudiants.Forms
                     //get the student by his cne from the server. 
                     Request request = new Request(RequestType.GetOneStudnet, cneStudent.Text);
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
+                    socket.Send(buffer);
                     buffer = new byte[2048];
-                    int size = MainForm.socket.Receive(buffer);
+                    int size = socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
                     Dictionary<bool, Student> answer = SerializeDeserializeObject.Deserialize(buffer) as Dictionary<bool, Student>;
                     /*                    FolderBrowserDialog folder = new FolderBrowserDialog();
@@ -54,12 +56,12 @@ namespace GestionDesEtudiants.Forms
                             PdfWriter.GetInstance(document, new FileStream(path + "\\" + answer.Values.First().CNE + ".pdf", FileMode.Create));
                             document.Open();
                             // ENSAS Logo
-                            iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(".\\Resources\\logo.png");
+                            iTextSharp.text.Image ensasLogo = iTextSharp.text.Image.GetInstance(@".\Resources\logo.png");
                             ensasLogo.ScalePercent(50);
                             ensasLogo.SetAbsolutePosition(document.PageSize.Width - 120f, document.PageSize.Height - 100f);
                             document.Add(ensasLogo);
                             // UCA Logo
-                            iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(".\\Resources\\ucaLogo.jpg");
+                            iTextSharp.text.Image ucaLogo = iTextSharp.text.Image.GetInstance(@".\Resources\ucaLogo.jpg");
                             ucaLogo.ScalePercent(50);
                             ucaLogo.SetAbsolutePosition(15f, document.PageSize.Height - 100f);
                             document.Add(ucaLogo);

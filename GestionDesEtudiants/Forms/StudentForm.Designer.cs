@@ -640,7 +640,8 @@ namespace GestionDesEtudiants.Forms
                 List<Student> students = null;
                 try
                 {
-                    students = ExcelReader.ReadFromExcel(filePath);
+                    ExcelReader excelReader = new ExcelReader(socket);
+                    students = excelReader.ReadFromExcel(filePath);
                     ExcelViewer excelViewer = new ExcelViewer(students);
                     excelViewer.ShowDialog();
                     //if the user confirmed his uploading
@@ -651,9 +652,9 @@ namespace GestionDesEtudiants.Forms
 
                             Request request = new Request(RequestType.AddStudent, student);
                             byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                            MainForm.socket.Send(buffer);
+                            socket.Send(buffer);
                             buffer = new byte[1024];
-                            int size = MainForm.socket.Receive(buffer);
+                            int size = socket.Receive(buffer);
                             Array.Resize(ref buffer, size);
                             bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                             if (!answer)

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,14 +15,16 @@ namespace GestionDesEtudiants.Forms
 {
     public partial class Graphic : Form
     {
-        public Graphic()
+        private Socket socket;
+        public Graphic(Socket sock)
         {
             InitializeComponent();
+            socket = sock;
             Request request = new Request(RequestType.GetStatics, null);
             byte[] buffer = SerializeDeserializeObject.Serialize(request);
-            MainForm.socket.Send(buffer);
+            socket.Send(buffer);
             buffer = new byte[1024 * 1024];
-            int size = MainForm.socket.Receive(buffer);
+            int size = socket.Receive(buffer);
             Array.Resize(ref buffer, size);
             int total = 0;
             Dictionary<string, int> answer = (Dictionary<string, int>)SerializeDeserializeObject.Deserialize(buffer);

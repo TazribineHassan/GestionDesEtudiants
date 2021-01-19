@@ -17,9 +17,11 @@ namespace GestionDesEtudiants.Forms
     {
 
         private int idStudentUpdate;
-        public StudentForm()
+        private Socket socket;
+        public StudentForm(Socket sock)
         {
             InitializeComponent();
+            socket = sock;
             validate.Visible = false;
             
             getAllBranches();
@@ -36,9 +38,9 @@ namespace GestionDesEtudiants.Forms
             {
                 Request request = new Request(RequestType.GetAllBranches, null);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
+                socket.Send(buffer);
                 buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
+                int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 dataGridView1.Rows.Clear();
                 List<Branch> branches = (List<Branch>)SerializeDeserializeObject.Deserialize(buffer);
@@ -82,9 +84,9 @@ namespace GestionDesEtudiants.Forms
             {
                 Request request = new Request(RequestType.AddStudent, new Student(0, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text, dateTimePicker1.Value, phone.Text));
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
+                socket.Send(buffer);
                 buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
+                int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                 if (answer)
@@ -118,9 +120,9 @@ namespace GestionDesEtudiants.Forms
                         string cne = dataGridView1.SelectedRows[i].Cells["CNE"].Value.ToString();
                         Request request = new Request(RequestType.DeleteStudent, cne);
                         byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                        MainForm.socket.Send(buffer);
+                        socket.Send(buffer);
                         buffer = new byte[1024];
-                        int size = MainForm.socket.Receive(buffer);
+                        int size = socket.Receive(buffer);
                         Array.Resize(ref buffer, size);
                         bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                         if (answer)
@@ -183,9 +185,9 @@ namespace GestionDesEtudiants.Forms
                 {
                     Request request = new Request(RequestType.GetOneStudnet, cneSearch.Text);
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
+                    socket.Send(buffer);
                     buffer = new byte[1024 * 1024];
-                    int size = MainForm.socket.Receive(buffer);
+                    int size = socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
                     Dictionary<bool, Student> answer = SerializeDeserializeObject.Deserialize(buffer) as Dictionary<bool, Student>;
 
@@ -228,9 +230,9 @@ namespace GestionDesEtudiants.Forms
             {
                 Request request = new Request(RequestType.GetAllStudnets, null);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
+                socket.Send(buffer);
                 buffer = new byte[1024 * 1024];
-                int size = MainForm.socket.Receive(buffer);
+                int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 dataGridView1.Rows.Clear();
                 List<Student> students = (List<Student>)SerializeDeserializeObject.Deserialize(buffer);
@@ -289,9 +291,9 @@ namespace GestionDesEtudiants.Forms
                     Student updateStudent = new Student(idStudentUpdate, (Branch)branchStudent.SelectedItem, cneStudent.Text, studentName.Text, studenLastName.Text, sex, address.Text, dateTimePicker1.Value, phone.Text);
                     Request request = new Request(RequestType.UpdateStudent, updateStudent);
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
+                    socket.Send(buffer);
                     buffer = new byte[1024];
-                    int size = MainForm.socket.Receive(buffer);
+                    int size = socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
                     bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                     if (answer)
