@@ -127,12 +127,13 @@ namespace Server
                             answer = connection.getStatistics();
                             break;
                         case RequestType.CheckUser:
-                            Console.WriteLine("chech the user");
+                            Console.WriteLine("Getting the user");
                             User user = request.Data as User;
                             answer = connection.CheckUser(user);
+                       
                             break;
                         case RequestType.UpdateUser:
-                            Console.WriteLine("Update  user");
+                            Console.WriteLine("Updating the user");
                             User userUpadte = request.Data as User;
                             nbRowsAffected = connection.UpdateUser(userUpadte);
                             if (nbRowsAffected > 0) answer = true;

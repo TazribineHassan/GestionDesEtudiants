@@ -340,8 +340,12 @@ namespace GestionDesEtudiants
 
         private void setting_Click(object sender, EventArgs e)
         {
-            param.Visible = true;
-            username.Text = user.Text;
+            if(param.Visible && currrentPass.Text == "" && newPassword.Text == "") param.Visible = false;
+            else
+            {
+                param.Visible = true;
+                username.Text = user.Text;
+            }
 
         }
 
@@ -360,6 +364,8 @@ namespace GestionDesEtudiants
                 int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                Console.WriteLine(idUser + "");
+                Console.WriteLine(answer);
                 if (answer)
                 {
                     new MessageBx("La modification a réussi", "Modification").Show();
@@ -370,6 +376,17 @@ namespace GestionDesEtudiants
                 param.Visible = false;
             }
             
+        }
+
+        private void importer_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Sélectionner une image(*.jpg;*.png) | *.jpg;*.png";
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                image.SizeMode = PictureBoxSizeMode.Zoom;
+                image.Image = System.Drawing.Image.FromFile(openFileDialog.FileName);
+            }
         }
 
         private PdfPCell MakePadding(PdfPCell cell)
