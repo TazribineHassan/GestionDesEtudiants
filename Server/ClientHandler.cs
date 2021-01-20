@@ -31,6 +31,7 @@ namespace Server
                 {
                     buffer = new byte[1024];
                     size = socket.Receive(buffer);
+                    Console.WriteLine(size);
                     Array.Resize(ref buffer, size);
                     Request request = (Request)SerializeDeserializeObject.Deserialize(buffer);
 
