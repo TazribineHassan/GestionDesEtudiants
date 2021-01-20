@@ -11,8 +11,14 @@ namespace GestionDesEtudiants
 {
     public class ExcelReader
     {
-        public static List<string> errorMessages; 
-        public static List<Student> ReadFromExcel(String filePath)
+        public static List<string> errorMessages;
+        private Socket socket;
+
+        public ExcelReader(Socket sock)
+        {
+            socket = sock;
+        }
+        public  List<Student> ReadFromExcel(String filePath)
         {
             errorMessages = new List<string>();
             List<Student> students = new List<Student>();
@@ -21,9 +27,9 @@ namespace GestionDesEtudiants
             Dictionary<string, int> branches = new Dictionary<string, int>();
             Request request = new Request(RequestType.GetAllBranches, null);
             byte[] buffer = SerializeDeserializeObject.Serialize(request);
-            MainForm.socket.Send(buffer);
+            socket.Send(buffer);
             buffer = new byte[1024];
-            int size = MainForm.socket.Receive(buffer);
+            int size = socket.Receive(buffer);
             Array.Resize(ref buffer, size);
 
             foreach(var item in (List<Branch>)SerializeDeserializeObject.Deserialize(buffer)){

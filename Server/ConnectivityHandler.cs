@@ -434,6 +434,68 @@ namespace Server
             return result;
         }
 
+        // check if the user exist in data base !!
+        public bool CheckUser(User user)
+        {
+            bool res = false;
+            string sqlQuery = "SELECT [USERNAME] ,[PASSWORD] FROM[StudentManagementDatabase].[dbo].[USERS] WHERE[USERNAME] = @username and[PASSWORD] = @password";
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sqlQuery;
+            command.Parameters.Add(new SqlParameter("@username", user.Username));
+            command.Parameters.Add(new SqlParameter("@password", user.Password));
+            try
+            {
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    res = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return res;
+        }
+        public int UpdateUser(User user)
+        {
+ 
+            string sqlQuery = "UPDATE [USERS] SET [USERNAME] = @username, [PASSWORD] = @password WHERE [IdUser] = @id";
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sqlQuery;
+            command.Parameters.Add(new SqlParameter("@username", user.Username));
+            command.Parameters.Add(new SqlParameter("@password", user.Password));
+            command.Parameters.Add(new SqlParameter("@id", user.Id));
+            int nbRowsAffected = 0;
+            try
+            {
+                con.Open();
+                nbRowsAffected = command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                con.Close();
+            }
+            finally
+            {
+                con.Close();
+            }
+            return nbRowsAffected;
+        }
+
     }
 
 }

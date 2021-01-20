@@ -17,12 +17,12 @@ namespace GestionDesEtudiants
  
     public partial class BranchForm : Form
     {
+        private Socket socket;
 
-
-        public BranchForm()
+        public BranchForm( Socket sock)
         {
             InitializeComponent();
-            
+            socket = sock;
             actualiserLeTableau();
             //désactiver l'édition du tableau
             foreach (DataGridViewBand band in dataGridView1.Columns)
@@ -36,9 +36,9 @@ namespace GestionDesEtudiants
             {
                 Request request = new Request(RequestType.GetAllBranches, null);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                MainForm.socket.Send(buffer);
+                socket.Send(buffer);
                 buffer = new byte[1024];
-                int size = MainForm.socket.Receive(buffer);
+                int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
                 dataGridView1.Rows.Clear();
                 List<Branch> filieres = (List<Branch>)SerializeDeserializeObject.Deserialize(buffer);
@@ -73,9 +73,9 @@ namespace GestionDesEtudiants
                 {
                     Request request = new Request(RequestType.AddBranch, new Branch(0, BranchName.Text));
                     byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                    MainForm.socket.Send(buffer);
+                    socket.Send(buffer);
                     buffer = new byte[1024];
-                    int size = MainForm.socket.Receive(buffer);
+                    int size = socket.Receive(buffer);
                     Array.Resize(ref buffer, size);
                     bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                     if (answer)
@@ -118,9 +118,9 @@ namespace GestionDesEtudiants
                     {
                         Request request = new Request(RequestType.DeleteBranch, id);
                         byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                        MainForm.socket.Send(buffer);
+                        socket.Send(buffer);
                         buffer = new byte[1024];
-                        int size = MainForm.socket.Receive(buffer);
+                        int size = socket.Receive(buffer);
                         Array.Resize(ref buffer, size);
                         bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                         if (answer)
@@ -166,13 +166,12 @@ namespace GestionDesEtudiants
                     {
                         MessageUpdate msg = new MessageUpdate();
                         msg.UpdateNamebranch.Text = branchNameTable;
-                        //Console.WriteLine(msg.UpdateNamebranch.Text);
                         msg.ShowDialog();
                         Request request = new Request(RequestType.UpdateBranch, new Branch(id, msg.UpdateNamebranch.Text));
                         byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                        MainForm.socket.Send(buffer);
+                        socket.Send(buffer);
                         buffer = new byte[1024];
-                        int size = MainForm.socket.Receive(buffer);
+                        int size = socket.Receive(buffer);
                         Array.Resize(ref buffer, size);
                         bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                         if (answer)

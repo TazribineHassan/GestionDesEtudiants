@@ -17,32 +17,82 @@ namespace GestionDesEtudiants
     {
         private IconButton btn;
         private Panel leftPanelBtn;
-        private Form currentForm;
-        public static Socket socket;
-        IPEndPoint localEndPoint;
+        private Form currentForm , loginForm;
+        private  Socket socket;
+        private int idUser;
+        Timer t = new Timer();
 
-
-        public MainForm()
+        public MainForm(int id,string userName, Socket sock, Form form)
         {
             InitializeComponent();
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
-            try
-            {
-                socket.Connect(localEndPoint);
-            }
-            catch (SocketException ex)
-            {
-                socket.Close();
-                Console.WriteLine("Unable to connect with the server try later (" + ex.Message + ")");
-            }
+            user.Text = userName;
+            socket = sock;
+            loginForm = form;
+            idUser = id;
             leftPanelBtn = new Panel();
             leftPanelBtn.Size = new Size(5, 60);
             menu.Controls.Add(leftPanelBtn);
             subMenu.Visible = false;
+            date.Text = DateTime.Now.ToShortDateString();
+            hour.Text = DateTime.Now.Hour + " : " + DateTime.Now.Minute + " : " + DateTime.Now.Millisecond;
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //timer interval
+            t.Interval = 1000;  //in milliseconds
+
+            t.Tick += new EventHandler(this.t_Tick);
+
+            //start timer when form loads
+            t.Start();  //this will use t_Tick() method
         }
 
-        // Ta activate a button we use this method
+
+        //timer eventhandler
+        private void t_Tick(object sender, EventArgs e)
+        {
+            //get current time
+            int hh = DateTime.Now.Hour;
+            int mm = DateTime.Now.Minute;
+            int ss = DateTime.Now.Second;
+
+            //time
+            string time = "";
+
+            //padding leading zero
+            if (hh < 10)
+            {
+                time += "0" + hh;
+            }
+            else
+            {
+                time += hh;
+            }
+            time += ":";
+
+            if (mm < 10)
+            {
+                time += "0" + mm;
+            }
+            else
+            {
+                time += mm;
+            }
+            time += ":";
+
+            if (ss < 10)
+            {
+                time += "0" + ss;
+            }
+            else
+            {
+                time += ss;
+            }
+
+            //update label
+            hour.Text = time;
+        }
+        // To activate a button we use this method
         //(it adds a left border in the activate btn and also it moves the icon into the right side)
         private void activateBtn(object sender, Color color)
         {
@@ -105,19 +155,19 @@ namespace GestionDesEtudiants
         private void btnBranchClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(241, 109, 109));
-            openForm(new BranchForm());
+            openForm(new BranchForm(socket));
         }
 
         private void btnStudentClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(109, 233, 241));
-            openForm(new StudentForm());
+            openForm(new StudentForm(socket));
         }
 
         private void btnStaticsCilck(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(221, 109, 241));
-            openForm(new Graphic());
+            openForm(new Graphic(socket));
         }
 
         private void btnReportClick(object sender, EventArgs e)
@@ -149,7 +199,7 @@ namespace GestionDesEtudiants
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openForm(new ReportingOneStudnet());
+            openForm(new ReportingOneStudnet(socket));
         }
 
         private void download_Click(object sender, EventArgs e)
@@ -272,6 +322,56 @@ namespace GestionDesEtudiants
             cell.HorizontalAlignment = 1;
 
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MessageBoxYesNo messageBox = new MessageBoxYesNo("Vous voullez quitter l'application ?", "Quitter l'application");
+            messageBox.ShowDialog();
+            if (messageBox.Answer)
+            { 
+                loginForm.Close();
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void setting_Click(object sender, EventArgs e)
+        {
+            param.Visible = true;
+            username.Text = user.Text;
+
+        }
+
+        private void validate_Click(object sender, EventArgs e)
+        {
+            if (currrentPass.Text == "" || newPassword.Text == "")
+            {
+                new MessageBx("Veuillez remplir tous les champs", "Attention").Show();
+            }
+            else
+            {
+                Request request = new Request(RequestType.UpdateUser, new User(idUser ,username.Text, newPassword.Text));
+                byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                socket.Send(buffer);
+                buffer = new byte[1024];
+                int size = socket.Receive(buffer);
+                Array.Resize(ref buffer, size);
+                bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
+                if (answer)
+                {
+                    new MessageBx("La modification a réussi", "Modification").Show();
+                    user.Text = username.Text;
+                }
+                else new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+
+                param.Visible = false;
+            }
+            
+        }
+
         private PdfPCell MakePadding(PdfPCell cell)
         {
 

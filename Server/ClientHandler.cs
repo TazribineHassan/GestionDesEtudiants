@@ -125,6 +125,18 @@ namespace Server
                             Console.WriteLine("Getting the statistics");
                             answer = connection.getStatistics();
                             break;
+                        case RequestType.CheckUser:
+                            Console.WriteLine("chech the user");
+                            User user = request.Data as User;
+                            answer = connection.CheckUser(user);
+                            break;
+                        case RequestType.UpdateUser:
+                            Console.WriteLine("Update  user");
+                            User userUpadte = request.Data as User;
+                            nbRowsAffected = connection.UpdateUser(userUpadte);
+                            if (nbRowsAffected > 0) answer = true;
+                            else answer = false;
+                            break;
                     }
 
                     byte[] bufferAnswer = SerializeDeserializeObject.Serialize(answer);
