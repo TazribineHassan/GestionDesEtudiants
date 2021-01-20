@@ -69,19 +69,18 @@ namespace GestionDesEtudiants
             try
             {
                 user = new User(0, username.Text, password.Text);
-                Console.WriteLine(user.Id + " " + user.Username + " " + user.Password);
                 Request request = new Request(RequestType.CheckUser, user);
-                Console.WriteLine(request);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                Console.WriteLine(buffer.Length);
                 socket.Send(buffer);
-                buffer = new byte[1024];
+                buffer = new byte[2048];
                 int size = socket.Receive(buffer);
                 Array.Resize(ref buffer, size);
-                bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
-                if (answer)
+                Dictionary<bool, int> answer = (Dictionary<bool, int>)SerializeDeserializeObject.Deserialize(buffer);
+
+                if (answer.Keys.First())
                 {   
-                    new MainForm(user.Id ,username.Text, socket, this).Show();
+                    new MainForm(answer.Values.First() ,username.Text, socket, this).Show();
+                    Console.WriteLine(user.Id);
                     Hide();
                 }
                 else
@@ -89,9 +88,10 @@ namespace GestionDesEtudiants
                     new MessageBx("Le mot de passe ou le nom d'utilisateur\nest incorrect", "Attention").Show();
                 }
             }
-            catch (Exception)
+            catch (SocketException )
             {
                 new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                
             }
 
 

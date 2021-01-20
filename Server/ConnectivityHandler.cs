@@ -435,10 +435,10 @@ namespace Server
         }
 
         // check if the user exist in data base !!
-        public bool CheckUser(User user)
+        public Dictionary<bool, int> CheckUser(User user)
         {
-            bool res = false;
-            string sqlQuery = "SELECT [USERNAME] ,[PASSWORD] FROM[StudentManagementDatabase].[dbo].[USERS] WHERE[USERNAME] = @username and[PASSWORD] = @password";
+            Dictionary<bool, int> result = new Dictionary<bool, int>();
+            string sqlQuery = "SELECT [IdUser], [USERNAME] ,[PASSWORD] FROM[StudentManagementDatabase].[dbo].[USERS] WHERE[USERNAME] = @username and[PASSWORD] = @password";
             SqlCommand command = con.CreateCommand();
             command.CommandText = sqlQuery;
             command.Parameters.Add(new SqlParameter("@username", user.Username));
@@ -447,10 +447,14 @@ namespace Server
             {
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    res = true;
-                }
+                var columns = new
+     {
+                    userId = reader.GetOrdinal("IdUser")
+
+                };
+                if (reader.Read()) result.Add(true, reader.GetInt32(columns.userId));
+                else result.Add(false, 0);
+                
             }
             catch (Exception e)
             {
@@ -461,7 +465,7 @@ namespace Server
             {
                 con.Close();
             }
-            return res;
+            return result;
         }
         public int UpdateUser(User user)
         {
