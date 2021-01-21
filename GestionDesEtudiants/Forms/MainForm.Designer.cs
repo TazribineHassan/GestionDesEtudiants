@@ -517,7 +517,7 @@ namespace GestionDesEtudiants
             this.hour.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.hour.AutoSize = true;
             this.hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hour.ForeColor = System.Drawing.Color.DarkRed;
+            this.hour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(57)))), ((int)(((byte)(8)))));
             this.hour.Location = new System.Drawing.Point(237, 130);
             this.hour.Name = "hour";
             this.hour.Size = new System.Drawing.Size(57, 20);
@@ -529,7 +529,7 @@ namespace GestionDesEtudiants
             this.date.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.date.AutoSize = true;
             this.date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.ForeColor = System.Drawing.Color.DarkRed;
+            this.date.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(57)))), ((int)(((byte)(8)))));
             this.date.Location = new System.Drawing.Point(237, 50);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(57, 20);

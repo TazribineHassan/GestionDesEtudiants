@@ -385,8 +385,16 @@ namespace GestionDesEtudiants
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 image.SizeMode = PictureBoxSizeMode.Zoom;
-                image.Image = System.Drawing.Image.FromFile(openFileDialog.FileName);
+                System.Drawing.Image photo = System.Drawing.Image.FromFile(openFileDialog.FileName);
+                photo.Save(@".\Resources\user.png");
+                image.Image = System.Drawing.Image.FromFile(@".\Resources\user.png");
             }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            loginForm.Show();            
         }
 
         private PdfPCell MakePadding(PdfPCell cell)
