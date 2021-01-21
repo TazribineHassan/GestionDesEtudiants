@@ -19,6 +19,7 @@ namespace GestionDesEtudiants
 
         private  Socket socket;
         IPEndPoint localEndPoint;
+        private const int Shadow = 0x00020000;
         public Login()
         {
             InitializeComponent();
@@ -36,6 +37,15 @@ namespace GestionDesEtudiants
             eyeSlash.Visible = false;
         }
 
+        protected override CreateParams CreateParams 
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= Shadow;
+                return cp;
+            }
+        }
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
