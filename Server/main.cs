@@ -13,6 +13,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
+            Console.Title = "Serveur";
 
             Socket sock;
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
