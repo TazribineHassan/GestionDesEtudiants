@@ -49,3 +49,4 @@ D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtud
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.exe
 D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.pdb
 C:\Users\admin\source\repos\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Login.resources
+D:\mini projets\GestionDesEtudiants\GestionDesEtudiants\obj\Debug\GestionDesEtudiants.Login.resources
