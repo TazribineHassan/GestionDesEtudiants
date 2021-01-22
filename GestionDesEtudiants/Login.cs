@@ -23,17 +23,6 @@ namespace GestionDesEtudiants
         public Login()
         {
             InitializeComponent();
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
-            try
-            {
-                socket.Connect(localEndPoint);
-            }
-            catch (SocketException )
-            {
-                socket.Close();
-                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
-            }
             eyeSlash.Visible = false;
         }
 
@@ -78,6 +67,9 @@ namespace GestionDesEtudiants
             User user;
             try
             {
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+                socket.Connect(localEndPoint);
                 user = new User(0, username.Text, password.Text);
                 Request request = new Request(RequestType.CheckUser, user);
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
@@ -90,7 +82,6 @@ namespace GestionDesEtudiants
                 if (answer.Keys.First())
                 {   
                     new MainForm(answer.Values.First() ,username.Text, socket, this).Show();
-                    Console.WriteLine(user.Id);
                     Hide();
                 }
                 else
@@ -100,10 +91,9 @@ namespace GestionDesEtudiants
             }
             catch (SocketException )
             {
-                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
-                
+                socket.Close();
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();               
             }
-
 
         }
     }

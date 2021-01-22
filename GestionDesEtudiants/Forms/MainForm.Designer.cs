@@ -29,6 +29,7 @@ namespace GestionDesEtudiants
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menu = new System.Windows.Forms.Panel();
             this.subMenu = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -569,6 +570,7 @@ namespace GestionDesEtudiants
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.header);
             this.Controls.Add(this.menu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application de gestion des étudiants";

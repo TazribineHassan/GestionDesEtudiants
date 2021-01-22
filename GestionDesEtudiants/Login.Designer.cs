@@ -29,22 +29,23 @@ namespace GestionDesEtudiants
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.password = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.eyeSlash = new System.Windows.Forms.Button();
+            this.eye = new System.Windows.Forms.Button();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
+            this.signIn = new FontAwesome.Sharp.IconButton();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.signIn = new FontAwesome.Sharp.IconButton();
-            this.eye = new System.Windows.Forms.Button();
-            this.eyeSlash = new System.Windows.Forms.Button();
-            this.username = new System.Windows.Forms.TextBox();
-            this.password = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -100,6 +101,51 @@ namespace GestionDesEtudiants
             this.panel8.Size = new System.Drawing.Size(249, 5);
             this.panel8.TabIndex = 14;
             // 
+            // password
+            // 
+            this.password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password.Location = new System.Drawing.Point(258, 256);
+            this.password.Name = "password";
+            this.password.PasswordChar = '*';
+            this.password.Size = new System.Drawing.Size(233, 26);
+            this.password.TabIndex = 11;
+            // 
+            // username
+            // 
+            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username.Location = new System.Drawing.Point(258, 197);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(233, 26);
+            this.username.TabIndex = 10;
+            // 
+            // eyeSlash
+            // 
+            this.eyeSlash.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.eyeSlash.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.eyeSlash.FlatAppearance.BorderSize = 0;
+            this.eyeSlash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eyeSlash.Image = global::GestionDesEtudiants.Properties.Resources.eyeSlash;
+            this.eyeSlash.Location = new System.Drawing.Point(497, 257);
+            this.eyeSlash.Name = "eyeSlash";
+            this.eyeSlash.Size = new System.Drawing.Size(37, 26);
+            this.eyeSlash.TabIndex = 9;
+            this.eyeSlash.UseVisualStyleBackColor = true;
+            this.eyeSlash.Click += new System.EventHandler(this.eyeSlash_Click_1);
+            // 
+            // eye
+            // 
+            this.eye.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.eye.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.eye.FlatAppearance.BorderSize = 0;
+            this.eye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.eye.Image = global::GestionDesEtudiants.Properties.Resources.eye;
+            this.eye.Location = new System.Drawing.Point(497, 256);
+            this.eye.Name = "eye";
+            this.eye.Size = new System.Drawing.Size(37, 26);
+            this.eye.TabIndex = 9;
+            this.eye.UseVisualStyleBackColor = true;
+            this.eye.Click += new System.EventHandler(this.eye_Click_1);
+            // 
             // iconPictureBox3
             // 
             this.iconPictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -131,6 +177,44 @@ namespace GestionDesEtudiants
             this.iconPictureBox2.Size = new System.Drawing.Size(30, 26);
             this.iconPictureBox2.TabIndex = 7;
             this.iconPictureBox2.TabStop = false;
+            // 
+            // signIn
+            // 
+            this.signIn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.signIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.signIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.signIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signIn.ForeColor = System.Drawing.Color.White;
+            this.signIn.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
+            this.signIn.IconColor = System.Drawing.Color.White;
+            this.signIn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.signIn.IconSize = 35;
+            this.signIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.signIn.Location = new System.Drawing.Point(314, 329);
+            this.signIn.Name = "signIn";
+            this.signIn.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.signIn.Size = new System.Drawing.Size(121, 47);
+            this.signIn.TabIndex = 6;
+            this.signIn.Text = "S\'identifier";
+            this.signIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.signIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.signIn.UseVisualStyleBackColor = false;
+            this.signIn.Click += new System.EventHandler(this.signIn_Click);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 100;
+            this.iconPictureBox1.Location = new System.Drawing.Point(324, 41);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.iconPictureBox1.TabIndex = 4;
+            this.iconPictureBox1.TabStop = false;
             // 
             // panel6
             // 
@@ -168,89 +252,6 @@ namespace GestionDesEtudiants
             this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 641);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 100;
-            this.iconPictureBox1.Location = new System.Drawing.Point(324, 41);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.iconPictureBox1.TabIndex = 4;
-            this.iconPictureBox1.TabStop = false;
-            // 
-            // signIn
-            // 
-            this.signIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.signIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
-            this.signIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.signIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signIn.ForeColor = System.Drawing.Color.White;
-            this.signIn.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
-            this.signIn.IconColor = System.Drawing.Color.White;
-            this.signIn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.signIn.IconSize = 35;
-            this.signIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.signIn.Location = new System.Drawing.Point(314, 329);
-            this.signIn.Name = "signIn";
-            this.signIn.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.signIn.Size = new System.Drawing.Size(121, 47);
-            this.signIn.TabIndex = 6;
-            this.signIn.Text = "S\'identifier";
-            this.signIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.signIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.signIn.UseVisualStyleBackColor = false;
-            this.signIn.Click += new System.EventHandler(this.signIn_Click);
-            // 
-            // eye
-            // 
-            this.eye.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.eye.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.eye.FlatAppearance.BorderSize = 0;
-            this.eye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eye.Image = global::GestionDesEtudiants.Properties.Resources.eye;
-            this.eye.Location = new System.Drawing.Point(497, 256);
-            this.eye.Name = "eye";
-            this.eye.Size = new System.Drawing.Size(37, 26);
-            this.eye.TabIndex = 9;
-            this.eye.UseVisualStyleBackColor = true;
-            this.eye.Click += new System.EventHandler(this.eye_Click_1);
-            // 
-            // eyeSlash
-            // 
-            this.eyeSlash.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.eyeSlash.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.eyeSlash.FlatAppearance.BorderSize = 0;
-            this.eyeSlash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eyeSlash.Image = global::GestionDesEtudiants.Properties.Resources.eyeSlash;
-            this.eyeSlash.Location = new System.Drawing.Point(497, 257);
-            this.eyeSlash.Name = "eyeSlash";
-            this.eyeSlash.Size = new System.Drawing.Size(37, 26);
-            this.eyeSlash.TabIndex = 9;
-            this.eyeSlash.UseVisualStyleBackColor = true;
-            this.eyeSlash.Click += new System.EventHandler(this.eyeSlash_Click_1);
-            // 
-            // username
-            // 
-            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username.Location = new System.Drawing.Point(258, 197);
-            this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(233, 26);
-            this.username.TabIndex = 10;
-            // 
-            // password
-            // 
-            this.password.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password.Location = new System.Drawing.Point(258, 256);
-            this.password.Name = "password";
-            this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(233, 26);
-            this.password.TabIndex = 11;
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +260,7 @@ namespace GestionDesEtudiants
             this.ClientSize = new System.Drawing.Size(1184, 641);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application de gestion des étudiants";
