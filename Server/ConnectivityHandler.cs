@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using System.Configuration;
 
 namespace Server
 {
@@ -15,7 +16,7 @@ namespace Server
         public ConnectivityHandler()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source = DESKTOP-566A95N\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
+            con.ConnectionString = ConfigurationManager.AppSettings["connectionString"];
             try
             {
                 con.Open();

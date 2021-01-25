@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -15,6 +16,7 @@ namespace Server
         {
             Console.Title = "Serveur";
 
+            int port = Int32.Parse(ConfigurationManager.AppSettings["communicationPort"]);
             Socket sock;
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sock.Bind(new IPEndPoint(IPAddress.Any, 1234));

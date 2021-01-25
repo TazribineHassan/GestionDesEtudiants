@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary;
+using System.Configuration;
 
 namespace GestionDesEtudiants
 {
@@ -67,8 +68,10 @@ namespace GestionDesEtudiants
             User user;
             try
             {
+                string serverIp = ConfigurationManager.AppSettings["serverIpAddress"];
+                int port = Int32.Parse(ConfigurationManager.AppSettings["communicationPort"]);
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                localEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+                localEndPoint = new IPEndPoint(IPAddress.Parse(serverIp), port);
                 socket.Connect(localEndPoint);
                 user = new User(0, username.Text, password.Text);
                 Request request = new Request(RequestType.CheckUser, user);
