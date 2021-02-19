@@ -34,14 +34,16 @@ namespace GestionDesEtudiants
         {
             try
             {
+                //Création de l'objet request à comme paramètre la demande de type avoir toutes les filières.
                 Request request = new Request(RequestType.GetAllBranches, null);
+                // la sérialisation de l'objet requeqt.
                 byte[] buffer = SerializeDeserializeObject.Serialize(request);
-                socket.Send(buffer);
-                buffer = new byte[1024];
-                int size = socket.Receive(buffer);
-                Array.Resize(ref buffer, size);
+                socket.Send(buffer);// Envoyer l'objet.
+                buffer = new byte[1024];// réinitialiser le buffer.
+                int size = socket.Receive(buffer); // Recevoir la réponse du serveur.
+                Array.Resize(ref buffer, size); // redimensionner le buffer 
+                List<Branch> filieres = (List<Branch>)SerializeDeserializeObject.Deserialize(buffer); // la sérialisation de la réponse.
                 dataGridView1.Rows.Clear();
-                List<Branch> filieres = (List<Branch>)SerializeDeserializeObject.Deserialize(buffer);
                 foreach (Branch filiere in filieres)
                 {
                     dataGridView1.Rows.Add(filiere.Id, filiere.Nom);
@@ -49,13 +51,8 @@ namespace GestionDesEtudiants
             }
             catch (SocketException )
             {
-                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
             }
-            finally
-            {
-                
-            }
-
 
         }
 
@@ -92,13 +89,13 @@ namespace GestionDesEtudiants
                 }
                 catch (Exception)
                 {
-                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
 
                 }
             }
             else
             {
-                new MessageBx("Veuillez remplir le champ", "Attention").Show();
+                new MessageBx("Veuillez remplir le champ", "Attention").ShowDialog();
                  
             }
 
@@ -130,12 +127,12 @@ namespace GestionDesEtudiants
                         }
                         else
                         {
-                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
                         }
                     }
                     catch (Exception)
                     {
-                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
                     }
                    
                 }
@@ -143,7 +140,7 @@ namespace GestionDesEtudiants
             }
             else
             {
-                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").ShowDialog();
             }           
         }
 
@@ -176,17 +173,17 @@ namespace GestionDesEtudiants
                         bool answer = (bool)SerializeDeserializeObject.Deserialize(buffer);
                         if (answer)
                         {
-                            new MessageBx("La modification a réussi", "Modification").Show();
+                            new MessageBx("La modification a réussi", "Modification").ShowDialog();
                             actualiserLeTableau();
                         }
                         else
                         {
-                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                            new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
                         }
                     }
                     catch (Exception)
                     { 
-                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                        new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();
                     }
 
                 }
@@ -194,7 +191,7 @@ namespace GestionDesEtudiants
             }
             else
             {
-                new MessageBx("Veuillez sélectionner une ligne", "Attention").Show();
+                new MessageBx("Veuillez sélectionner une ligne", "Attention").ShowDialog();
             }
            
         }
