@@ -165,5 +165,43 @@ namespace GestionDesEtudiants.Forms
             cell.PaddingTop = 10;
             return cell;
         }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            if (cneStudent.Text != "")
+            {
+
+                try
+                {
+                    //get the student by his cne from the server. 
+                    Request request = new Request(RequestType.GetOneStudnet, cneStudent.Text);
+                    byte[] buffer = SerializeDeserializeObject.Serialize(request);
+                    socket.Send(buffer);
+                    buffer = new byte[2048];
+                    int size = socket.Receive(buffer);
+                    Array.Resize(ref buffer, size);
+                    Dictionary<bool, Student> answer = SerializeDeserializeObject.Deserialize(buffer) as Dictionary<bool, Student>;
+                    /*                    FolderBrowserDialog folder = new FolderBrowserDialog();
+                                        if (folder.ShowDialog() == DialogResult.OK)
+                                        {*/
+                    if (answer.Keys.First())
+                    {
+                        new oneStudentReportViewerForm(answer.Values.First()).Show();
+                    }
+                    else
+                    {
+                        new MessageBx("Veuillez vérifier le CNE", "Attention").Show();
+                    }
+                }
+                catch (SocketException)
+                {
+                    new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
+                }
+            }
+            else
+            {
+                new MessageBx("Veuillez remplir le champs", "Attention").Show();
+            }
+        }
     }
 }
