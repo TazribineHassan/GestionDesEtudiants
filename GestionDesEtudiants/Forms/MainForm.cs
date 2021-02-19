@@ -10,6 +10,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using ClassLibrary;
 using System.Collections.Generic;
+using GestionDesEtudiants.ReportAdapters;
 
 namespace GestionDesEtudiants
 {
@@ -173,7 +174,7 @@ namespace GestionDesEtudiants
         private void btnReportClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(241, 109, 141));
-            openForm(new Reporting());
+            openForm(new allStudentsReportViewerForm(socket));
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -204,7 +205,11 @@ namespace GestionDesEtudiants
 
         private void download_Click(object sender, EventArgs e)
         {
-            openForm(new Reporting());
+            
+            openForm(new allStudentsReportViewerForm(socket));
+
+/*
+            openForm(new Reporting(socket));
 
             MessageBoxYesNo messageBoxYesNo = new MessageBoxYesNo("Vous voulez Télécharger le Reporting ?", "Télécharger le Reporting");
             messageBoxYesNo.ShowDialog();
@@ -312,7 +317,7 @@ namespace GestionDesEtudiants
                 {
                     new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();
                 }
-            }
+            }*/
 
         }
         private void MakePaddingAndColor(PdfPCell cell)

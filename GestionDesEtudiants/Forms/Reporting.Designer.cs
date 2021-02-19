@@ -58,6 +58,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.Size = new System.Drawing.Size(478, 310);
             this.iconButton1.TabIndex = 0;
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // Reporting
             // 

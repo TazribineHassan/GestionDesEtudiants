@@ -52,6 +52,24 @@
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1427.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -68,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelReader.cs" />
+    <Compile Include="Forms\allStudentsReportViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\allStudentsReportViewerForm.Designer.cs">
+      <DependentUpon>allStudentsReportViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExcelViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +121,12 @@
     </Compile>
     <Compile Include="Forms\MessageUpdate.Designer.cs">
       <DependentUpon>MessageUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\oneStudentReportViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\oneStudentReportViewerForm.Designer.cs">
+      <DependentUpon>oneStudentReportViewerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Reporting.cs">
       <SubType>Form</SubType>
@@ -136,6 +166,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAdapters\AllStudentsReportAdapter.cs" />
+    <Compile Include="ReportAdapters\OneStudentReportAdapter.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\allStudentsReportViewerForm.resx">
+      <DependentUpon>allStudentsReportViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BranchForm.resx">
       <DependentUpon>BranchForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MessageUpdate.resx">
       <DependentUpon>MessageUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\oneStudentReportViewerForm.resx">
+      <DependentUpon>oneStudentReportViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reporting.resx">
       <DependentUpon>Reporting.cs</DependentUpon>
@@ -179,8 +218,35 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\AllStudentsMainReport.rdlc" />
+    <EmbeddedResource Include="Reports\AllStudentsSubReport.rdlc" />
+    <EmbeddedResource Include="Reports\oneStudentReport.rdlc" />
     <None Include="Excel test\test.xls" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Adapters.AllStudentsReportAdapter.datasource" />
+    <None Include="Properties\DataSources\Adapters.OneStudentReportAdapter.datasource" />
+    <None Include="Properties\DataSources\BranchForm.datasource" />
+    <None Include="Properties\DataSources\ClassLibrary.Branch.datasource" />
+    <None Include="Properties\DataSources\ClassLibrary.Request.datasource" />
+    <None Include="Properties\DataSources\ClassLibrary.SerializeDeserializeObject.datasource" />
+    <None Include="Properties\DataSources\ClassLibrary.Student.datasource" />
+    <None Include="Properties\DataSources\ClassLibrary.User.datasource" />
+    <None Include="Properties\DataSources\ExcelReader.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.ExcelViewer.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.Graphic.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.MessageBoxYesNo.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.MessageBx.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.MessageUpdate.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.Reporting.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.ReportingOneStudnet.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Forms.StudentForm.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.ReportAdapters.AllStudentsReportAdapter.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.ReportAdapters.StudentReportAdapter.datasource" />
+    <None Include="Properties\DataSources\Login.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -198,11 +264,25 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\eye.png" />
     <None Include="Resources\eyeSlash.png" />
     <Content Include="GESTION Des ÉTUDIANTS.ico" />
     <Content Include="Libraries\ClassLibrary.dll" />
     <Content Include="Resources\ucaLogo.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
