@@ -49,14 +49,14 @@ namespace GestionDesEtudiants.Forms
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.ShowExportButton = false;
             this.reportViewer1.ShowPrintButton = false;
-            this.reportViewer1.Size = new System.Drawing.Size(750, 387);
+            this.reportViewer1.Size = new System.Drawing.Size(784, 461);
             this.reportViewer1.TabIndex = 0;
             // 
             // oneStudentReportViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 387);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "oneStudentReportViewerForm";

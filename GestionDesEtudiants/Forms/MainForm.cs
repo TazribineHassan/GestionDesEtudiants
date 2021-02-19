@@ -174,7 +174,7 @@ namespace GestionDesEtudiants
         private void btnReportClick(object sender, EventArgs e)
         {
             activateBtn(sender, Color.FromArgb(241, 109, 141));
-            openForm(new allStudentsReportViewerForm(socket));
+            openForm(new Reporting(socket));
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -205,7 +205,6 @@ namespace GestionDesEtudiants
 
         private void download_Click(object sender, EventArgs e)
         {
-            
             openForm(new allStudentsReportViewerForm(socket));
 
 /*

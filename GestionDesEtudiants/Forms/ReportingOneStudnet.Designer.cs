@@ -123,6 +123,7 @@ namespace GestionDesEtudiants.Forms
             this.Controls.Add(this.groupBox);
             this.Name = "ReportingOneStudnet";
             this.Text = "ReportingOneStudnet";
+            this.Load += new System.EventHandler(this.ReportingOneStudnet_Load);
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
             this.ResumeLayout(false);

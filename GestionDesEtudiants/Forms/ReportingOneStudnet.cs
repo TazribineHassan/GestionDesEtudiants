@@ -186,7 +186,9 @@ namespace GestionDesEtudiants.Forms
                                         {*/
                     if (answer.Keys.First())
                     {
+
                         new oneStudentReportViewerForm(answer.Values.First()).Show();
+                        cneStudent.Text = "";
                     }
                     else
                     {
@@ -202,6 +204,11 @@ namespace GestionDesEtudiants.Forms
             {
                 new MessageBx("Veuillez remplir le champs", "Attention").Show();
             }
+        }
+
+        private void ReportingOneStudnet_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
