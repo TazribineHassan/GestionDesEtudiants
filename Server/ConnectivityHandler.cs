@@ -13,7 +13,7 @@ namespace Server
         public ConnectivityHandler()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source = DESKTOP-UBPJAU2\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
+            con.ConnectionString = ConfigurationManager.AppSettings["connectionString"]; // "Data Source = DESKTOP-UBPJAU2\\ENSASDB; Initial Catalog = StudentManagementDatabase; Integrated Security = true";
             try
             {
                 con.Open();
