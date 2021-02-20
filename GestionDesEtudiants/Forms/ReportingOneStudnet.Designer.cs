@@ -58,7 +58,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
             this.iconButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconButton2.ForeColor = System.Drawing.Color.White;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
             this.iconButton2.IconColor = System.Drawing.Color.White;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 35;
@@ -66,7 +66,7 @@ namespace GestionDesEtudiants.Forms
             this.iconButton2.Location = new System.Drawing.Point(186, 112);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.iconButton2.Size = new System.Drawing.Size(129, 42);
+            this.iconButton2.Size = new System.Drawing.Size(127, 42);
             this.iconButton2.TabIndex = 3;
             this.iconButton2.Text = "Afficher";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

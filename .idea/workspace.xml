@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea016266-57e7-485e-ba36-a182c5b95a52" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.vs/GestionDesEtudiants/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/GestionDesEtudiants/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Forms/MainForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Forms/MainForm.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Forms/Reporting.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Forms/Reporting.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Forms/ReportingOneStudnet.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Forms/ReportingOneStudnet.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Forms/allStudentsReportViewerForm.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Forms/allStudentsReportViewerForm.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/GestionDesEtudiants.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/GestionDesEtudiants.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Login.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Login.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Properties/Resources.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Properties/Resources.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/Properties/Resources.resx" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/Properties/Resources.resx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/bin/Debug/GestionDesEtudiants.exe" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/bin/Debug/GestionDesEtudiants.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/bin/Debug/GestionDesEtudiants.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/bin/Debug/GestionDesEtudiants.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.Properties.Resources.resources" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.Properties.Resources.resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.csproj.GenerateResource.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.exe" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/GestionDesEtudiants.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll" beforeDir="false" afterPath="$PROJECT_DIR$/GestionDesEtudiants/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1olR0WXo8RsvLaxb4LC9iUnIXPU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea016266-57e7-485e-ba36-a182c5b95a52" name="Default Changelist" comment="" />
+      <created>1613858971575</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613858971575</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -89,13 +89,13 @@ namespace GestionDesEtudiants
                 }
                 else
                 {
-                    new MessageBx("Le mot de passe ou le nom d'utilisateur\nest incorrect", "Attention").Show();
+                    new MessageBx("Le mot de passe ou le nom d'utilisateur\nest incorrect", "Attention").ShowDialog();
                 }
             }
             catch (SocketException )
             {
                 socket.Close();
-                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").Show();               
+                new MessageBx("Nous avons rencontré un problème!\nRéessayer plus tard.", "Problème de serveur").ShowDialog();               
             }
 
         }
