@@ -41,10 +41,6 @@
           <DataField>Prenom</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ReportDate">
-          <DataField>ReportDate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Sex">
           <DataField>Sex</DataField>
           <rd:TypeName>System.String</rd:TypeName>

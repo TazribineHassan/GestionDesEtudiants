@@ -541,11 +541,15 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!ReportDate.Value</Value>
-                <Style />
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <Format>d</Format>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -744,10 +748,6 @@
           <DataField>Prenom</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ReportDate">
-          <DataField>ReportDate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Sex">
           <DataField>Sex</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -758,9 +758,9 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Adapters</rd:DataSetName>
+        <rd:DataSetName>GestionDesEtudiants.ReportAdapters</rd:DataSetName>
         <rd:TableName>OneStudentReportAdapter</rd:TableName>
-        <rd:ObjectDataSourceType>Adapters.OneStudentReportAdapter, Adapters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>GestionDesEtudiants.ReportAdapters.OneStudentReportAdapter, GestionDesEtudiants, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

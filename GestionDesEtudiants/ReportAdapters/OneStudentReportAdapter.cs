@@ -17,7 +17,6 @@ namespace GestionDesEtudiants.ReportAdapters
         public string Address { get; set; }
         public string DateNaissance { get; set; }
         public string Telephone { get; set; }
-        public string ReportDate { get; set; }
         public OneStudentReportAdapter(Student student)
         {
             this.CNE = student.CNE;
@@ -28,7 +27,6 @@ namespace GestionDesEtudiants.ReportAdapters
             this.Address = student.Adresse;
             this.DateNaissance = student.DateNessance.ToShortDateString();
             this.Telephone = student.Telephone;
-            this.ReportDate = DateTime.Now.ToShortDateString();
         }
     }
 

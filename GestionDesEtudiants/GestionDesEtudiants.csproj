@@ -243,6 +243,7 @@
     <None Include="Properties\DataSources\GestionDesEtudiants.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\GestionDesEtudiants.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\GestionDesEtudiants.ReportAdapters.AllStudentsReportAdapter.datasource" />
+    <None Include="Properties\DataSources\GestionDesEtudiants.ReportAdapters.OneStudentReportAdapter.datasource" />
     <None Include="Properties\DataSources\GestionDesEtudiants.ReportAdapters.StudentReportAdapter.datasource" />
     <None Include="Properties\DataSources\Login.datasource" />
     <None Include="Properties\DataSources\MainForm.datasource" />
