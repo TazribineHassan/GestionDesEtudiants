@@ -41,7 +41,7 @@ namespace GestionDesEtudiants.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 369);
+            this.panel1.Size = new System.Drawing.Size(812, 469);
             this.panel1.TabIndex = 0;
             // 
             // iconButton1
@@ -49,13 +49,13 @@ namespace GestionDesEtudiants.Forms
             this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.iconButton1.FlatAppearance.BorderSize = 0;
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FileDownload;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
             this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(78)))), ((int)(((byte)(132)))));
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 300;
-            this.iconButton1.Location = new System.Drawing.Point(102, 56);
+            this.iconButton1.IconSize = 350;
+            this.iconButton1.Location = new System.Drawing.Point(127, 69);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(478, 310);
+            this.iconButton1.Size = new System.Drawing.Size(549, 388);
             this.iconButton1.TabIndex = 0;
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
@@ -65,7 +65,7 @@ namespace GestionDesEtudiants.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(251)))));
-            this.ClientSize = new System.Drawing.Size(684, 369);
+            this.ClientSize = new System.Drawing.Size(812, 469);
             this.Controls.Add(this.panel1);
             this.Name = "Reporting";
             this.panel1.ResumeLayout(false);

@@ -32,11 +32,15 @@ namespace GestionDesEtudiants.Forms
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(allStudentsReportViewerForm));
+            this.AllStudentsReportAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.AllStudentsReportAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.AllStudentsReportAdapterBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // AllStudentsReportAdapterBindingSource
+            // 
+            this.AllStudentsReportAdapterBindingSource.DataSource = typeof(GestionDesEtudiants.ReportAdapters.AllStudentsReportAdapter);
             // 
             // reportViewer1
             // 
@@ -76,14 +80,11 @@ namespace GestionDesEtudiants.Forms
             this.iconButton2.UseVisualStyleBackColor = false;
             this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
-            // AllStudentsReportAdapterBindingSource
-            // 
-            this.AllStudentsReportAdapterBindingSource.DataSource = typeof(GestionDesEtudiants.ReportAdapters.AllStudentsReportAdapter);
-            // 
             // allStudentsReportViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(240)))), ((int)(((byte)(251)))));
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.iconButton2);
             this.Controls.Add(this.reportViewer1);

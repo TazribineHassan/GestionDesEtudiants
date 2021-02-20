@@ -244,7 +244,7 @@ namespace GestionDesEtudiants
             // 
             this.btnStart.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStart.Image = global::GestionDesEtudiants.Properties.Resources.logo;
+            this.btnStart.Image = global::GestionDesEtudiants.Properties.Resources.GESTION_Des_ÉTUDIANTS;
             this.btnStart.Location = new System.Drawing.Point(12, 21);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(167, 117);
