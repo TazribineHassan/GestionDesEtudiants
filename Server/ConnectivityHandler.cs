@@ -436,7 +436,7 @@ namespace Server
         public Dictionary<bool, int> CheckUser(User user)
         {
             Dictionary<bool, int> result = new Dictionary<bool, int>();
-            string sqlQuery = "SELECT [IdUser], [USERNAME] ,[PASSWORD] FROM[StudentManagementDatabase].[dbo].[USERS] WHERE[USERNAME] = @username and[PASSWORD] = @password";
+            string sqlQuery = "SELECT [IdUser], [USERNAME] ,[PASSWORD] FROM [USERS] WHERE[USERNAME] = @username and[PASSWORD] = @password";
             SqlCommand command = con.CreateCommand();
             command.CommandText = sqlQuery;
             command.Parameters.Add(new SqlParameter("@username", user.Username));
